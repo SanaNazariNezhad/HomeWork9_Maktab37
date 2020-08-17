@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">HomeWork9_Maktab37</string>
+    <string name="Game">Game</string>
+    <string name="tic_tac_toe">Tic Tac Toe</string>
+    <string name="_4_in_a_row">4 in a Row</string>
+</resources>
