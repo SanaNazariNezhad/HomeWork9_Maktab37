@@ -15,14 +15,14 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/btn_tic_tac_toe"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/tic_tac_toe"
             android:textAllCaps="false" />
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/btn_4_in_a_row"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/_4_in_a_row"
@@ -30,7 +30,7 @@
     </LinearLayout>
 
     <FrameLayout
-        android:id="@+id/frameLayout"
+        android:id="@+id/fragment_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
