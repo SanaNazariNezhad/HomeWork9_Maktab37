@@ -311,6 +311,7 @@ public class _4InARowFragment extends Fragment {
                     mButton1_2.setBackgroundResource(R.color.player2_red);
                     mColorOfBtn[0][1] = 2;
                 }
+                checkingBtn1_2();
                 player++;
                 mCounter2++;
             }
@@ -565,6 +566,185 @@ public class _4InARowFragment extends Fragment {
                 disableButton();
             }
             else if (mColorOfBtn[0][0] == 2) {
+                Snackbar.make(mFrameLayout4InARow, R.string.player2_is_winner, Snackbar.LENGTH_SHORT).show();
+                disableButton();
+            }
+
+
+        }
+    }
+
+    private void checkingBtn1_2() {
+        if (((mColorOfBtn[0][1] == mColorOfBtn[0][0]) && (mColorOfBtn[0][1] == mColorOfBtn[0][2]) &&
+                (mColorOfBtn[0][1] == mColorOfBtn[0][3])) ||((mColorOfBtn[0][1] == mColorOfBtn[0][2])
+                && (mColorOfBtn[0][1] == mColorOfBtn[0][3]) && (mColorOfBtn[0][1] == mColorOfBtn[0][4])) ||
+                ((mColorOfBtn[0][1] == mColorOfBtn[1][1]) && (mColorOfBtn[0][1] == mColorOfBtn[2][1])
+                        && (mColorOfBtn[0][1] == mColorOfBtn[3][1])) || ((mColorOfBtn[0][1] == mColorOfBtn[1][2])
+                && (mColorOfBtn[0][1] == mColorOfBtn[2][3]) && (mColorOfBtn[0][1] == mColorOfBtn[3][4]))) {
+            if (mColorOfBtn[0][1] == 1) {
+                Snackbar.make(mFrameLayout4InARow, R.string.player1_is_winner, Snackbar.LENGTH_SHORT).show();
+                disableButton();
+            }
+            else if (mColorOfBtn[0][1] == 2) {
+                Snackbar.make(mFrameLayout4InARow, R.string.player2_is_winner, Snackbar.LENGTH_SHORT).show();
+                disableButton();
+            }
+
+
+        }
+    }
+
+    private void checkingBtn1_3() {
+        if (((mColorOfBtn[0][2] == mColorOfBtn[0][0]) && (mColorOfBtn[0][2] == mColorOfBtn[0][1]) &&
+                (mColorOfBtn[0][2] == mColorOfBtn[0][3])) ||((mColorOfBtn[0][2] == mColorOfBtn[0][1])
+                && (mColorOfBtn[0][2] == mColorOfBtn[0][3]) && (mColorOfBtn[0][2] == mColorOfBtn[0][4])) ||
+                ((mColorOfBtn[0][2] == mColorOfBtn[1][2]) && (mColorOfBtn[0][2] == mColorOfBtn[2][2])
+                        && (mColorOfBtn[0][2] == mColorOfBtn[3][2])) ) {
+            if (mColorOfBtn[0][2] == 1) {
+                Snackbar.make(mFrameLayout4InARow, R.string.player1_is_winner, Snackbar.LENGTH_SHORT).show();
+                disableButton();
+            }
+            else if (mColorOfBtn[0][2] == 2) {
+                Snackbar.make(mFrameLayout4InARow, R.string.player2_is_winner, Snackbar.LENGTH_SHORT).show();
+                disableButton();
+            }
+
+
+        }
+    }
+
+    private void checkingBtn1_4() {
+        if (((mColorOfBtn[0][3] == mColorOfBtn[0][0]) && (mColorOfBtn[0][3] == mColorOfBtn[0][1]) &&
+                (mColorOfBtn[0][3] == mColorOfBtn[0][2])) ||((mColorOfBtn[0][3] == mColorOfBtn[0][1])
+                && (mColorOfBtn[0][3] == mColorOfBtn[0][2]) && (mColorOfBtn[0][3] == mColorOfBtn[0][4])) ||
+                ((mColorOfBtn[0][3] == mColorOfBtn[1][3]) && (mColorOfBtn[0][3] == mColorOfBtn[2][3])
+                        && (mColorOfBtn[0][3] == mColorOfBtn[3][3])) || ((mColorOfBtn[0][3] == mColorOfBtn[1][2])
+                && (mColorOfBtn[0][3] == mColorOfBtn[2][1]) && (mColorOfBtn[0][3] == mColorOfBtn[3][0]))) {
+            if (mColorOfBtn[0][3] == 1) {
+                Snackbar.make(mFrameLayout4InARow, R.string.player1_is_winner, Snackbar.LENGTH_SHORT).show();
+                disableButton();
+            }
+            else if (mColorOfBtn[0][3] == 2) {
+                Snackbar.make(mFrameLayout4InARow, R.string.player2_is_winner, Snackbar.LENGTH_SHORT).show();
+                disableButton();
+            }
+
+
+        }
+    }
+
+    private void checkingBtn1_5() {
+        if (((mColorOfBtn[0][4] == mColorOfBtn[0][1]) && (mColorOfBtn[0][4] == mColorOfBtn[0][2]) &&
+                (mColorOfBtn[0][4] == mColorOfBtn[0][3])) ||((mColorOfBtn[0][4] == mColorOfBtn[1][4])
+                && (mColorOfBtn[0][4] == mColorOfBtn[2][4]) && (mColorOfBtn[0][4] == mColorOfBtn[3][4])) ||
+                ((mColorOfBtn[0][4] == mColorOfBtn[1][3]) && (mColorOfBtn[0][4] == mColorOfBtn[2][2])
+                        && (mColorOfBtn[0][4] == mColorOfBtn[3][1]))) {
+            if (mColorOfBtn[0][4] == 1) {
+                Snackbar.make(mFrameLayout4InARow, R.string.player1_is_winner, Snackbar.LENGTH_SHORT).show();
+                disableButton();
+            }
+            else if (mColorOfBtn[0][4] == 2) {
+                Snackbar.make(mFrameLayout4InARow, R.string.player2_is_winner, Snackbar.LENGTH_SHORT).show();
+                disableButton();
+            }
+
+
+        }
+    }
+
+    private void checkingBtn2_1() {
+        if (((mColorOfBtn[1][0] == mColorOfBtn[1][1]) && (mColorOfBtn[1][0] == mColorOfBtn[1][2]) &&
+                (mColorOfBtn[1][0] == mColorOfBtn[1][3])) || ((mColorOfBtn[1][0] == mColorOfBtn[2][0])
+                && (mColorOfBtn[1][0] == mColorOfBtn[3][0]) && (mColorOfBtn[1][0] == mColorOfBtn[4][0]))
+                || ((mColorOfBtn[1][0] == mColorOfBtn[0][0]) && (mColorOfBtn[1][0] == mColorOfBtn[2][0])
+                && (mColorOfBtn[1][0] == mColorOfBtn[3][0])) || ((mColorOfBtn[1][0] == mColorOfBtn[2][1])
+                && (mColorOfBtn[1][0] == mColorOfBtn[3][2]) && (mColorOfBtn[1][0] == mColorOfBtn[4][3]))) {
+            if (mColorOfBtn[1][0] == 1) {
+                Snackbar.make(mFrameLayout4InARow, R.string.player1_is_winner, Snackbar.LENGTH_SHORT).show();
+                disableButton();
+            }
+            else if (mColorOfBtn[1][0] == 2) {
+                Snackbar.make(mFrameLayout4InARow, R.string.player2_is_winner, Snackbar.LENGTH_SHORT).show();
+                disableButton();
+            }
+
+
+        }
+    }
+
+    private void checkingBtn2_2() {
+        if (((mColorOfBtn[1][1] == mColorOfBtn[1][0]) && (mColorOfBtn[1][1] == mColorOfBtn[1][2]) &&
+                (mColorOfBtn[1][1] == mColorOfBtn[1][3])) ||((mColorOfBtn[1][1] == mColorOfBtn[1][2])
+                && (mColorOfBtn[1][1] == mColorOfBtn[1][3]) && (mColorOfBtn[1][1] == mColorOfBtn[1][4])) ||
+                ((mColorOfBtn[1][1] == mColorOfBtn[0][1]) && (mColorOfBtn[1][1] == mColorOfBtn[2][1])
+                        && (mColorOfBtn[1][1] == mColorOfBtn[3][1])) || ((mColorOfBtn[1][1] == mColorOfBtn[2][1])
+                && (mColorOfBtn[1][1] == mColorOfBtn[3][1]) && (mColorOfBtn[1][1] == mColorOfBtn[4][1])) ||
+                ((mColorOfBtn[1][1] == mColorOfBtn[0][0]) && (mColorOfBtn[1][1] == mColorOfBtn[2][2]) &&
+                        (mColorOfBtn[1][1] == mColorOfBtn[3][3])) || ((mColorOfBtn[1][1] == mColorOfBtn[2][2])
+                && (mColorOfBtn[1][1] == mColorOfBtn[3][3]) && (mColorOfBtn[1][1] == mColorOfBtn[4][4]))) {
+            if (mColorOfBtn[1][1] == 1) {
+                Snackbar.make(mFrameLayout4InARow, R.string.player1_is_winner, Snackbar.LENGTH_SHORT).show();
+                disableButton();
+            }
+            else if (mColorOfBtn[1][1] == 2) {
+                Snackbar.make(mFrameLayout4InARow, R.string.player2_is_winner, Snackbar.LENGTH_SHORT).show();
+                disableButton();
+            }
+
+
+        }
+    }
+
+    private void checkingBtn2_3() {
+        if (((mColorOfBtn[0][2] == mColorOfBtn[0][0]) && (mColorOfBtn[0][2] == mColorOfBtn[0][1]) &&
+                (mColorOfBtn[0][2] == mColorOfBtn[0][3])) ||((mColorOfBtn[0][2] == mColorOfBtn[0][1])
+                && (mColorOfBtn[0][2] == mColorOfBtn[0][3]) && (mColorOfBtn[0][2] == mColorOfBtn[0][4])) ||
+                ((mColorOfBtn[0][2] == mColorOfBtn[1][2]) && (mColorOfBtn[0][2] == mColorOfBtn[2][2])
+                        && (mColorOfBtn[0][2] == mColorOfBtn[3][2])) ) {
+            if (mColorOfBtn[0][2] == 1) {
+                Snackbar.make(mFrameLayout4InARow, R.string.player1_is_winner, Snackbar.LENGTH_SHORT).show();
+                disableButton();
+            }
+            else if (mColorOfBtn[0][2] == 2) {
+                Snackbar.make(mFrameLayout4InARow, R.string.player2_is_winner, Snackbar.LENGTH_SHORT).show();
+                disableButton();
+            }
+
+
+        }
+    }
+
+    private void checkingBtn2_4() {
+        if (((mColorOfBtn[0][3] == mColorOfBtn[0][0]) && (mColorOfBtn[0][3] == mColorOfBtn[0][1]) &&
+                (mColorOfBtn[0][3] == mColorOfBtn[0][2])) ||((mColorOfBtn[0][3] == mColorOfBtn[0][1])
+                && (mColorOfBtn[0][3] == mColorOfBtn[0][2]) && (mColorOfBtn[0][3] == mColorOfBtn[0][4])) ||
+                ((mColorOfBtn[0][3] == mColorOfBtn[1][3]) && (mColorOfBtn[0][3] == mColorOfBtn[2][3])
+                        && (mColorOfBtn[0][3] == mColorOfBtn[3][3])) || ((mColorOfBtn[0][3] == mColorOfBtn[1][2])
+                && (mColorOfBtn[0][3] == mColorOfBtn[2][1]) && (mColorOfBtn[0][3] == mColorOfBtn[3][0]))) {
+            if (mColorOfBtn[0][3] == 1) {
+                Snackbar.make(mFrameLayout4InARow, R.string.player1_is_winner, Snackbar.LENGTH_SHORT).show();
+                disableButton();
+            }
+            else if (mColorOfBtn[0][3] == 2) {
+                Snackbar.make(mFrameLayout4InARow, R.string.player2_is_winner, Snackbar.LENGTH_SHORT).show();
+                disableButton();
+            }
+
+
+        }
+    }
+
+    private void checkingBtn2_5() {
+        if (((mColorOfBtn[0][4] == mColorOfBtn[0][1]) && (mColorOfBtn[0][4] == mColorOfBtn[0][2]) &&
+                (mColorOfBtn[0][4] == mColorOfBtn[0][3])) ||((mColorOfBtn[0][4] == mColorOfBtn[1][4])
+                && (mColorOfBtn[0][4] == mColorOfBtn[2][4]) && (mColorOfBtn[0][4] == mColorOfBtn[3][4])) ||
+                ((mColorOfBtn[0][4] == mColorOfBtn[1][3]) && (mColorOfBtn[0][4] == mColorOfBtn[2][2])
+                        && (mColorOfBtn[0][4] == mColorOfBtn[3][1]))) {
+            if (mColorOfBtn[0][4] == 1) {
+                Snackbar.make(mFrameLayout4InARow, R.string.player1_is_winner, Snackbar.LENGTH_SHORT).show();
+                disableButton();
+            }
+            else if (mColorOfBtn[0][4] == 2) {
                 Snackbar.make(mFrameLayout4InARow, R.string.player2_is_winner, Snackbar.LENGTH_SHORT).show();
                 disableButton();
             }
