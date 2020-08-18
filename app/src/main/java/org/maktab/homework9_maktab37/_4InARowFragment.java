@@ -556,242 +556,112 @@ public class _4InARowFragment extends Fragment {
     }
 
     private void checkingBtn1_1() {
-        if (((mColorOfBtn[0][0] == mColorOfBtn[0][1]) && (mColorOfBtn[0][0] == mColorOfBtn[0][2]) &&
-                (mColorOfBtn[0][0] == mColorOfBtn[0][3])) || ((mColorOfBtn[0][0] == mColorOfBtn[1][0])
-                && (mColorOfBtn[0][0] == mColorOfBtn[2][0]) && (mColorOfBtn[0][0] == mColorOfBtn[3][0]))
-                || ((mColorOfBtn[0][0] == mColorOfBtn[1][1]) && (mColorOfBtn[0][0] == mColorOfBtn[2][2])
-                && (mColorOfBtn[0][0] == mColorOfBtn[3][3]))) {
-            if (mColorOfBtn[0][0] == 1) {
+        short [] parameters = {0,0,0,1,0,2,0,3,1,0,2,0,3,0,1,1,2,2,3,3};
+        checkingWinnerOne(0, 0, 0, 1, 0, 2, 0, 3, 1, 0, 2, 0, 3, 0, 1, 1, 2, 2, 3, 3);
+    }
+
+    private void checkingWinnerOne(int i, int i2, int i3, int i4, int i5, int i6, int i7, int i8, int i9, int i10, int i11, int i12, int i13, int i14, int i15, int i16, int i17, int i18, int i19, int i20) {
+        if (((mColorOfBtn[i][i2] == mColorOfBtn[i3][i4]) && (mColorOfBtn[i][i2] == mColorOfBtn[i5][i6]) &&
+                (mColorOfBtn[i][i2] == mColorOfBtn[i7][i8])) || ((mColorOfBtn[i][i2] == mColorOfBtn[i9][i10])
+                && (mColorOfBtn[i][i2] == mColorOfBtn[i11][i12]) && (mColorOfBtn[i][i2] == mColorOfBtn[i13][i14]))
+                || ((mColorOfBtn[i][i2] == mColorOfBtn[i15][i16]) && (mColorOfBtn[i][i2] == mColorOfBtn[i17][i18])
+                && (mColorOfBtn[i][i2] == mColorOfBtn[i19][i20]))) {
+            if (mColorOfBtn[i][i2] == 1) {
                 Snackbar.make(mFrameLayout4InARow, R.string.player1_is_winner, Snackbar.LENGTH_SHORT).show();
                 disableButton();
-            } else if (mColorOfBtn[0][0] == 2) {
+            } else if (mColorOfBtn[i][i2] == 2) {
                 Snackbar.make(mFrameLayout4InARow, R.string.player2_is_winner, Snackbar.LENGTH_SHORT).show();
                 disableButton();
             }
-
-
         }
     }
 
     private void checkingBtn1_2() {
-        if (((mColorOfBtn[0][1] == mColorOfBtn[0][0]) && (mColorOfBtn[0][1] == mColorOfBtn[0][2]) &&
-                (mColorOfBtn[0][1] == mColorOfBtn[0][3])) || ((mColorOfBtn[0][1] == mColorOfBtn[0][2])
-                && (mColorOfBtn[0][1] == mColorOfBtn[0][3]) && (mColorOfBtn[0][1] == mColorOfBtn[0][4])) ||
-                ((mColorOfBtn[0][1] == mColorOfBtn[1][1]) && (mColorOfBtn[0][1] == mColorOfBtn[2][1])
-                        && (mColorOfBtn[0][1] == mColorOfBtn[3][1])) || ((mColorOfBtn[0][1] == mColorOfBtn[1][2])
-                && (mColorOfBtn[0][1] == mColorOfBtn[2][3]) && (mColorOfBtn[0][1] == mColorOfBtn[3][4]))) {
-            if (mColorOfBtn[0][1] == 1) {
+        checkingWinnerTwo(0, 1, 0, 2, 3, 0, 2, 0, 3, 0, 4, 1, 2, 3, 1, 2, 2, 3, 3, 4);
+    }
+
+    private void checkingWinnerTwo(int i, int i2, int i3, int i4, int i5, int i6, int i7, int i8, int i9, int i10, int i11, int i12, int i13, int i14, int i15, int i16, int i17, int i18, int i19, int i20) {
+        if (((mColorOfBtn[i][i2] == mColorOfBtn[i][i3]) && (mColorOfBtn[i][i2] == mColorOfBtn[i][i4]) &&
+                (mColorOfBtn[i][i2] == mColorOfBtn[i][i5])) || ((mColorOfBtn[i][i2] == mColorOfBtn[i6][i7])
+                && (mColorOfBtn[i][i2] == mColorOfBtn[i8][i9]) && (mColorOfBtn[i][i2] == mColorOfBtn[i10][i11])) ||
+                ((mColorOfBtn[i][i2] == mColorOfBtn[i12][i2]) && (mColorOfBtn[i][i2] == mColorOfBtn[i13][i2])
+                        && (mColorOfBtn[i][i2] == mColorOfBtn[i14][i2])) || ((mColorOfBtn[i][i2] == mColorOfBtn[i15][i16])
+                && (mColorOfBtn[i][i2] == mColorOfBtn[i17][i18]) && (mColorOfBtn[i][i2] == mColorOfBtn[i19][i20]))) {
+            if (mColorOfBtn[i][i2] == 1) {
                 Snackbar.make(mFrameLayout4InARow, R.string.player1_is_winner, Snackbar.LENGTH_SHORT).show();
                 disableButton();
-            } else if (mColorOfBtn[0][1] == 2) {
+            } else if (mColorOfBtn[i][i2] == 2) {
                 Snackbar.make(mFrameLayout4InARow, R.string.player2_is_winner, Snackbar.LENGTH_SHORT).show();
                 disableButton();
             }
-
-
         }
     }
 
     private void checkingBtn1_3() {
-        if (((mColorOfBtn[0][2] == mColorOfBtn[0][0]) && (mColorOfBtn[0][2] == mColorOfBtn[0][1]) &&
-                (mColorOfBtn[0][2] == mColorOfBtn[0][3])) || ((mColorOfBtn[0][2] == mColorOfBtn[0][1])
-                && (mColorOfBtn[0][2] == mColorOfBtn[0][3]) && (mColorOfBtn[0][2] == mColorOfBtn[0][4])) ||
-                ((mColorOfBtn[0][2] == mColorOfBtn[1][2]) && (mColorOfBtn[0][2] == mColorOfBtn[2][2])
-                        && (mColorOfBtn[0][2] == mColorOfBtn[3][2]))) {
-            if (mColorOfBtn[0][2] == 1) {
-                Snackbar.make(mFrameLayout4InARow, R.string.player1_is_winner, Snackbar.LENGTH_SHORT).show();
-                disableButton();
-            } else if (mColorOfBtn[0][2] == 2) {
-                Snackbar.make(mFrameLayout4InARow, R.string.player2_is_winner, Snackbar.LENGTH_SHORT).show();
-                disableButton();
-            }
-
-
-        }
+        checkingWinnerOne(0, 2, 0, 0, 0, 1, 0, 3, 0, 1, 0, 3, 0, 4, 1, 2, 2, 2, 3, 2);
     }
 
     private void checkingBtn1_4() {
-        if (((mColorOfBtn[0][3] == mColorOfBtn[0][0]) && (mColorOfBtn[0][3] == mColorOfBtn[0][1]) &&
-                (mColorOfBtn[0][3] == mColorOfBtn[0][2])) || ((mColorOfBtn[0][3] == mColorOfBtn[0][1])
-                && (mColorOfBtn[0][3] == mColorOfBtn[0][2]) && (mColorOfBtn[0][3] == mColorOfBtn[0][4])) ||
-                ((mColorOfBtn[0][3] == mColorOfBtn[1][3]) && (mColorOfBtn[0][3] == mColorOfBtn[2][3])
-                        && (mColorOfBtn[0][3] == mColorOfBtn[3][3])) || ((mColorOfBtn[0][3] == mColorOfBtn[1][2])
-                && (mColorOfBtn[0][3] == mColorOfBtn[2][1]) && (mColorOfBtn[0][3] == mColorOfBtn[3][0]))) {
-            if (mColorOfBtn[0][3] == 1) {
-                Snackbar.make(mFrameLayout4InARow, R.string.player1_is_winner, Snackbar.LENGTH_SHORT).show();
-                disableButton();
-            } else if (mColorOfBtn[0][3] == 2) {
-                Snackbar.make(mFrameLayout4InARow, R.string.player2_is_winner, Snackbar.LENGTH_SHORT).show();
-                disableButton();
-            }
-
-
-        }
+        checkingWinnerTwo(0, 3, 0, 1, 2, 0, 1, 0, 2, 0, 4, 1, 2, 3, 1, 2, 2, 1, 3, 0);
     }
 
     private void checkingBtn1_5() {
-        if (((mColorOfBtn[0][4] == mColorOfBtn[0][1]) && (mColorOfBtn[0][4] == mColorOfBtn[0][2]) &&
-                (mColorOfBtn[0][4] == mColorOfBtn[0][3])) || ((mColorOfBtn[0][4] == mColorOfBtn[1][4])
-                && (mColorOfBtn[0][4] == mColorOfBtn[2][4]) && (mColorOfBtn[0][4] == mColorOfBtn[3][4])) ||
-                ((mColorOfBtn[0][4] == mColorOfBtn[1][3]) && (mColorOfBtn[0][4] == mColorOfBtn[2][2])
-                        && (mColorOfBtn[0][4] == mColorOfBtn[3][1]))) {
-            if (mColorOfBtn[0][4] == 1) {
-                Snackbar.make(mFrameLayout4InARow, R.string.player1_is_winner, Snackbar.LENGTH_SHORT).show();
-                disableButton();
-            } else if (mColorOfBtn[0][4] == 2) {
-                Snackbar.make(mFrameLayout4InARow, R.string.player2_is_winner, Snackbar.LENGTH_SHORT).show();
-                disableButton();
-            }
-
-
-        }
+        checkingWinnerOne(0, 4, 0, 1, 0, 2, 0, 3, 1, 4, 2, 4, 3, 4, 1, 3, 2, 2, 3, 1);
     }
 
     private void checkingBtn2_1() {
-        if (((mColorOfBtn[1][0] == mColorOfBtn[1][1]) && (mColorOfBtn[1][0] == mColorOfBtn[1][2]) &&
-                (mColorOfBtn[1][0] == mColorOfBtn[1][3])) || ((mColorOfBtn[1][0] == mColorOfBtn[2][0])
-                && (mColorOfBtn[1][0] == mColorOfBtn[3][0]) && (mColorOfBtn[1][0] == mColorOfBtn[4][0]))
-                || ((mColorOfBtn[1][0] == mColorOfBtn[0][0]) && (mColorOfBtn[1][0] == mColorOfBtn[2][0])
-                && (mColorOfBtn[1][0] == mColorOfBtn[3][0])) || ((mColorOfBtn[1][0] == mColorOfBtn[2][1])
-                && (mColorOfBtn[1][0] == mColorOfBtn[3][2]) && (mColorOfBtn[1][0] == mColorOfBtn[4][3]))) {
-            if (mColorOfBtn[1][0] == 1) {
-                Snackbar.make(mFrameLayout4InARow, R.string.player1_is_winner, Snackbar.LENGTH_SHORT).show();
-                disableButton();
-            } else if (mColorOfBtn[1][0] == 2) {
-                Snackbar.make(mFrameLayout4InARow, R.string.player2_is_winner, Snackbar.LENGTH_SHORT).show();
-                disableButton();
-            }
-
-
-        }
+        checkingWinnerTwo(1, 0, 1, 2, 3, 2, 0, 3, 0, 4, 0, 0, 2, 3, 2, 1, 3, 2, 4, 3);
     }
 
     private void checkingBtn2_2() {
-        if (((mColorOfBtn[1][1] == mColorOfBtn[1][0]) && (mColorOfBtn[1][1] == mColorOfBtn[1][2]) &&
-                (mColorOfBtn[1][1] == mColorOfBtn[1][3])) || ((mColorOfBtn[1][1] == mColorOfBtn[1][2])
-                && (mColorOfBtn[1][1] == mColorOfBtn[1][3]) && (mColorOfBtn[1][1] == mColorOfBtn[1][4])) ||
-                ((mColorOfBtn[1][1] == mColorOfBtn[0][1]) && (mColorOfBtn[1][1] == mColorOfBtn[2][1])
-                        && (mColorOfBtn[1][1] == mColorOfBtn[3][1])) || ((mColorOfBtn[1][1] == mColorOfBtn[2][1])
-                && (mColorOfBtn[1][1] == mColorOfBtn[3][1]) && (mColorOfBtn[1][1] == mColorOfBtn[4][1])) ||
-                ((mColorOfBtn[1][1] == mColorOfBtn[0][0]) && (mColorOfBtn[1][1] == mColorOfBtn[2][2]) &&
-                        (mColorOfBtn[1][1] == mColorOfBtn[3][3])) || ((mColorOfBtn[1][1] == mColorOfBtn[2][2])
-                && (mColorOfBtn[1][1] == mColorOfBtn[3][3]) && (mColorOfBtn[1][1] == mColorOfBtn[4][4]))) {
-            if (mColorOfBtn[1][1] == 1) {
+        checkingWinnerThree(1, 1, 2, 3, 2, 3, 0, 0, 2, 2, 3, 3, 2, 2, 3, 3, 4, 4);
+    }
+
+    private void checkingWinnerThree(int i, int i2, int i3, int i4, int i5, int i6, int i7, int i8, int i9, int i10, int i11, int i12, int i13, int i14, int i15, int i16, int i17, int i18) {
+        if (((mColorOfBtn[i][i2] == mColorOfBtn[i][0]) && (mColorOfBtn[i][i2] == mColorOfBtn[i][i3]) &&
+                (mColorOfBtn[i][i2] == mColorOfBtn[i][i4])) || ((mColorOfBtn[i][i2] == mColorOfBtn[i][i3])
+                && (mColorOfBtn[i][i2] == mColorOfBtn[i][i4]) && (mColorOfBtn[i][i2] == mColorOfBtn[i][4])) ||
+                ((mColorOfBtn[i][i2] == mColorOfBtn[0][i2]) && (mColorOfBtn[i][i2] == mColorOfBtn[i5][i2])
+                        && (mColorOfBtn[i][i2] == mColorOfBtn[i6][i2])) || ((mColorOfBtn[i][i2] == mColorOfBtn[i5][i2])
+                && (mColorOfBtn[i][i2] == mColorOfBtn[i6][i2]) && (mColorOfBtn[i][i2] == mColorOfBtn[4][i2])) ||
+                ((mColorOfBtn[i][i2] == mColorOfBtn[i7][i8]) && (mColorOfBtn[i][i2] == mColorOfBtn[i9][i10]) &&
+                        (mColorOfBtn[i][i2] == mColorOfBtn[i11][i12])) || ((mColorOfBtn[i][i2] == mColorOfBtn[i13][i14])
+                && (mColorOfBtn[i][i2] == mColorOfBtn[i15][i16]) && (mColorOfBtn[i][i2] == mColorOfBtn[i17][i18]))) {
+            if (mColorOfBtn[i][i2] == 1) {
                 Snackbar.make(mFrameLayout4InARow, R.string.player1_is_winner, Snackbar.LENGTH_SHORT).show();
                 disableButton();
-            } else if (mColorOfBtn[1][1] == 2) {
+            } else if (mColorOfBtn[i][i2] == 2) {
                 Snackbar.make(mFrameLayout4InARow, R.string.player2_is_winner, Snackbar.LENGTH_SHORT).show();
                 disableButton();
             }
-
-
         }
     }
 
     private void checkingBtn2_3() {
-        if (((mColorOfBtn[1][2] == mColorOfBtn[1][0]) && (mColorOfBtn[1][2] == mColorOfBtn[1][1]) &&
-                (mColorOfBtn[1][2] == mColorOfBtn[1][3])) || ((mColorOfBtn[1][2] == mColorOfBtn[1][1])
-                && (mColorOfBtn[1][2] == mColorOfBtn[1][3]) && (mColorOfBtn[1][2] == mColorOfBtn[1][4])) ||
-                ((mColorOfBtn[1][2] == mColorOfBtn[0][2]) && (mColorOfBtn[1][2] == mColorOfBtn[2][2])
-                        && (mColorOfBtn[1][2] == mColorOfBtn[3][2])) || ((mColorOfBtn[1][2] == mColorOfBtn[2][2]) &&
-                (mColorOfBtn[1][2] == mColorOfBtn[3][2]) && (mColorOfBtn[1][2] == mColorOfBtn[4][2])) ||
-                ((mColorOfBtn[1][2] == mColorOfBtn[0][1]) && (mColorOfBtn[1][2] == mColorOfBtn[2][3])
-                && (mColorOfBtn[1][2] == mColorOfBtn[3][4])) || ((mColorOfBtn[1][2] == mColorOfBtn[0][3]) &&
-                (mColorOfBtn[1][2] == mColorOfBtn[2][1]) && (mColorOfBtn[1][2] == mColorOfBtn[3][0]))) {
-            if (mColorOfBtn[1][2] == 1) {
-                Snackbar.make(mFrameLayout4InARow, R.string.player1_is_winner, Snackbar.LENGTH_SHORT).show();
-                disableButton();
-            } else if (mColorOfBtn[1][2] == 2) {
-                Snackbar.make(mFrameLayout4InARow, R.string.player2_is_winner, Snackbar.LENGTH_SHORT).show();
-                disableButton();
-            }
-
-
-        }
+        checkingWinnerThree(1, 2, 1, 3, 2, 3, 0, 1, 2, 3, 3, 4, 0, 3, 2, 1, 3, 0);
     }
 
     private void checkingBtn2_4() {
-        if (((mColorOfBtn[1][3] == mColorOfBtn[1][0]) && (mColorOfBtn[1][3] == mColorOfBtn[1][1]) &&
-                (mColorOfBtn[1][3] == mColorOfBtn[1][2])) || ((mColorOfBtn[1][3] == mColorOfBtn[1][1])
-                && (mColorOfBtn[1][3] == mColorOfBtn[1][2]) && (mColorOfBtn[1][3] == mColorOfBtn[1][4])) ||
-                ((mColorOfBtn[1][3] == mColorOfBtn[0][3]) && (mColorOfBtn[1][3] == mColorOfBtn[2][3])
-                        && (mColorOfBtn[1][3] == mColorOfBtn[3][3])) || ((mColorOfBtn[1][3] == mColorOfBtn[2][3])
-                && (mColorOfBtn[1][3] == mColorOfBtn[3][3]) && (mColorOfBtn[1][3] == mColorOfBtn[4][3])) ||
-                ((mColorOfBtn[1][3] == mColorOfBtn[0][4]) && (mColorOfBtn[1][3] == mColorOfBtn[2][2]) &&
-                        (mColorOfBtn[1][3] == mColorOfBtn[3][1])) || ((mColorOfBtn[1][3] == mColorOfBtn[2][2])
-                && (mColorOfBtn[1][3] == mColorOfBtn[3][1]) && (mColorOfBtn[1][3] == mColorOfBtn[4][0]))) {
-            if (mColorOfBtn[1][3] == 1) {
-                Snackbar.make(mFrameLayout4InARow, R.string.player1_is_winner, Snackbar.LENGTH_SHORT).show();
-                disableButton();
-            } else if (mColorOfBtn[1][3] == 2) {
-                Snackbar.make(mFrameLayout4InARow, R.string.player2_is_winner, Snackbar.LENGTH_SHORT).show();
-                disableButton();
-            }
-
-
-        }
+        checkingWinnerThree(1, 3, 1, 2, 2, 3, 0, 4, 2, 2, 3, 1, 2, 2, 3, 1, 4, 0);
     }
 
     private void checkingBtn2_5() {
-        if (((mColorOfBtn[1][4] == mColorOfBtn[1][1]) && (mColorOfBtn[1][4] == mColorOfBtn[1][2]) &&
-                (mColorOfBtn[1][4] == mColorOfBtn[1][3])) || ((mColorOfBtn[1][4] == mColorOfBtn[0][4])
-                && (mColorOfBtn[1][4] == mColorOfBtn[2][4]) && (mColorOfBtn[1][4] == mColorOfBtn[3][4])) ||
-                ((mColorOfBtn[1][4] == mColorOfBtn[2][4]) && (mColorOfBtn[1][4] == mColorOfBtn[3][4]) &&
-                        (mColorOfBtn[1][4] == mColorOfBtn[4][4])) || ((mColorOfBtn[1][4] == mColorOfBtn[2][3]) &&
-                (mColorOfBtn[1][4] == mColorOfBtn[3][2]) && (mColorOfBtn[1][4] == mColorOfBtn[4][1]))) {
-            if (mColorOfBtn[1][4] == 1) {
-                Snackbar.make(mFrameLayout4InARow, R.string.player1_is_winner, Snackbar.LENGTH_SHORT).show();
-                disableButton();
-            } else if (mColorOfBtn[1][4] == 2) {
-                Snackbar.make(mFrameLayout4InARow, R.string.player2_is_winner, Snackbar.LENGTH_SHORT).show();
-                disableButton();
-            }
-
-
-        }
+        checkingWinnerTwo(1, 4, 1, 2, 3, 0, 4, 2, 4, 3, 4, 2, 3, 4, 2, 3, 3, 2, 4, 1);
     }
 
     private void checkingBtn3_1() {
-        if (((mColorOfBtn[2][0] == mColorOfBtn[2][1]) && (mColorOfBtn[2][0] == mColorOfBtn[2][2]) &&
-                (mColorOfBtn[2][0] == mColorOfBtn[2][3])) || ((mColorOfBtn[2][0] == mColorOfBtn[0][0])
-                && (mColorOfBtn[2][0] == mColorOfBtn[1][0]) && (mColorOfBtn[2][0] == mColorOfBtn[3][0]))
-                || ((mColorOfBtn[2][0] == mColorOfBtn[1][0]) && (mColorOfBtn[2][0] == mColorOfBtn[3][0])
-                && (mColorOfBtn[2][0] == mColorOfBtn[4][0]))) {
-            if (mColorOfBtn[2][0] == 1) {
-                Snackbar.make(mFrameLayout4InARow, R.string.player1_is_winner, Snackbar.LENGTH_SHORT).show();
-                disableButton();
-            } else if (mColorOfBtn[2][0] == 2) {
-                Snackbar.make(mFrameLayout4InARow, R.string.player2_is_winner, Snackbar.LENGTH_SHORT).show();
-                disableButton();
-            }
-
-
-        }
+        checkingWinnerOne(2, 0, 2, 1, 2, 2, 2, 3, 0, 0, 1, 0, 3, 0, 1, 0, 3, 0, 4, 0);
     }
 
     private void checkingBtn3_2() {
-        if (((mColorOfBtn[2][1] == mColorOfBtn[2][0]) && (mColorOfBtn[2][1] == mColorOfBtn[2][2]) &&
-                (mColorOfBtn[2][1] == mColorOfBtn[2][3])) || ((mColorOfBtn[2][1] == mColorOfBtn[2][2])
-                && (mColorOfBtn[2][1] == mColorOfBtn[2][3]) && (mColorOfBtn[2][1] == mColorOfBtn[2][4])) ||
-                ((mColorOfBtn[2][1] == mColorOfBtn[0][1]) && (mColorOfBtn[2][1] == mColorOfBtn[1][1])
-                        && (mColorOfBtn[2][1] == mColorOfBtn[3][1])) || ((mColorOfBtn[2][1] == mColorOfBtn[1][1])
-                && (mColorOfBtn[2][1] == mColorOfBtn[3][1]) && (mColorOfBtn[2][1] == mColorOfBtn[4][1])) ||
-                ((mColorOfBtn[2][1] == mColorOfBtn[1][0]) && (mColorOfBtn[2][1] == mColorOfBtn[3][2]) &&
-                        (mColorOfBtn[2][1] == mColorOfBtn[4][3])) || ((mColorOfBtn[2][1] == mColorOfBtn[0][3])
-                && (mColorOfBtn[2][1] == mColorOfBtn[1][2]) && (mColorOfBtn[2][1] == mColorOfBtn[3][0]))) {
-            if (mColorOfBtn[2][1] == 1) {
-                Snackbar.make(mFrameLayout4InARow, R.string.player1_is_winner, Snackbar.LENGTH_SHORT).show();
-                disableButton();
-            } else if (mColorOfBtn[2][1] == 2) {
-                Snackbar.make(mFrameLayout4InARow, R.string.player2_is_winner, Snackbar.LENGTH_SHORT).show();
-                disableButton();
-            }
-
-
-        }
+        checkingWinnerThree(2, 1, 2, 3, 1, 3, 1, 0, 3, 2, 4, 3, 0, 3, 1, 2, 3, 0);
     }
 
     private void checkingBtn3_3() {
+        checkingWinnerFour();
+    }
+
+    private void checkingWinnerFour() {
         if (((mColorOfBtn[2][2] == mColorOfBtn[2][0]) && (mColorOfBtn[2][2] == mColorOfBtn[2][1]) &&
                 (mColorOfBtn[2][2] == mColorOfBtn[2][3])) || ((mColorOfBtn[2][2] == mColorOfBtn[2][1])
                 && (mColorOfBtn[2][2] == mColorOfBtn[2][3]) && (mColorOfBtn[2][2] == mColorOfBtn[2][4])) ||
@@ -811,244 +681,54 @@ public class _4InARowFragment extends Fragment {
                 Snackbar.make(mFrameLayout4InARow, R.string.player2_is_winner, Snackbar.LENGTH_SHORT).show();
                 disableButton();
             }
-
-
         }
     }
 
     private void checkingBtn3_4() {
-        if (((mColorOfBtn[2][3] == mColorOfBtn[2][0]) && (mColorOfBtn[2][3] == mColorOfBtn[2][1]) &&
-                (mColorOfBtn[2][3] == mColorOfBtn[2][2])) || ((mColorOfBtn[2][3] == mColorOfBtn[2][1])
-                && (mColorOfBtn[2][3] == mColorOfBtn[2][2]) && (mColorOfBtn[2][3] == mColorOfBtn[2][4])) ||
-                ((mColorOfBtn[2][3] == mColorOfBtn[0][3]) && (mColorOfBtn[2][3] == mColorOfBtn[1][3])
-                        && (mColorOfBtn[2][3] == mColorOfBtn[3][3])) || ((mColorOfBtn[2][3] == mColorOfBtn[1][3])
-                && (mColorOfBtn[2][3] == mColorOfBtn[3][3]) && (mColorOfBtn[2][3] == mColorOfBtn[4][3])) ||
-                ((mColorOfBtn[2][3] == mColorOfBtn[1][4]) && (mColorOfBtn[2][3] == mColorOfBtn[3][2]) &&
-                        (mColorOfBtn[2][3] == mColorOfBtn[4][1])) || ((mColorOfBtn[2][3] == mColorOfBtn[0][1])
-                && (mColorOfBtn[2][3] == mColorOfBtn[1][2]) && (mColorOfBtn[2][3] == mColorOfBtn[3][4]))) {
-            if (mColorOfBtn[2][3] == 1) {
-                Snackbar.make(mFrameLayout4InARow, R.string.player1_is_winner, Snackbar.LENGTH_SHORT).show();
-                disableButton();
-            } else if (mColorOfBtn[2][3] == 2) {
-                Snackbar.make(mFrameLayout4InARow, R.string.player2_is_winner, Snackbar.LENGTH_SHORT).show();
-                disableButton();
-            }
-
-
-        }
+        checkingWinnerThree(2, 3, 1, 2, 1, 3, 1, 4, 3, 2, 4, 1, 0, 1, 1, 2, 3, 4);
     }
 
     private void checkingBtn3_5() {
-        if (((mColorOfBtn[2][4] == mColorOfBtn[0][4]) && (mColorOfBtn[2][4] == mColorOfBtn[1][4]) &&
-                (mColorOfBtn[2][4] == mColorOfBtn[3][4])) || ((mColorOfBtn[2][4] == mColorOfBtn[1][4])
-                && (mColorOfBtn[2][4] == mColorOfBtn[3][4]) && (mColorOfBtn[2][4] == mColorOfBtn[4][4])) ||
-                ((mColorOfBtn[2][4] == mColorOfBtn[2][1]) && (mColorOfBtn[2][4] == mColorOfBtn[2][2])
-                        && (mColorOfBtn[2][4] == mColorOfBtn[2][3]))) {
-            if (mColorOfBtn[2][4] == 1) {
-                Snackbar.make(mFrameLayout4InARow, R.string.player1_is_winner, Snackbar.LENGTH_SHORT).show();
-                disableButton();
-            } else if (mColorOfBtn[2][4] == 2) {
-                Snackbar.make(mFrameLayout4InARow, R.string.player2_is_winner, Snackbar.LENGTH_SHORT).show();
-                disableButton();
-            }
-
-
-        }
+        checkingWinnerOne(2, 4, 0, 4, 1, 4, 3, 4, 1, 4, 3, 4, 4, 4, 2, 1, 2, 2, 2, 3);
     }
 
     private void checkingBtn4_1() {
-        if (((mColorOfBtn[3][0] == mColorOfBtn[3][1]) && (mColorOfBtn[3][0] == mColorOfBtn[3][2]) &&
-                (mColorOfBtn[3][0] == mColorOfBtn[3][3])) || ((mColorOfBtn[3][0] == mColorOfBtn[0][0])
-                && (mColorOfBtn[3][0] == mColorOfBtn[1][0]) && (mColorOfBtn[3][0] == mColorOfBtn[2][0]))
-                || ((mColorOfBtn[3][0] == mColorOfBtn[1][0]) && (mColorOfBtn[3][0] == mColorOfBtn[2][0])
-                && (mColorOfBtn[3][0] == mColorOfBtn[4][0])) || ((mColorOfBtn[3][0] == mColorOfBtn[0][3])
-                && (mColorOfBtn[3][0] == mColorOfBtn[1][2]) && (mColorOfBtn[3][0] == mColorOfBtn[2][1]))) {
-            if (mColorOfBtn[3][0] == 1) {
-                Snackbar.make(mFrameLayout4InARow, R.string.player1_is_winner, Snackbar.LENGTH_SHORT).show();
-                disableButton();
-            } else if (mColorOfBtn[3][0] == 2) {
-                Snackbar.make(mFrameLayout4InARow, R.string.player2_is_winner, Snackbar.LENGTH_SHORT).show();
-                disableButton();
-            }
-
-
-        }
+        checkingWinnerTwo(3, 0, 1, 2, 3, 0, 0, 1, 0, 2, 0, 1, 2, 4, 0, 3, 1, 2, 2, 1);
     }
 
     private void checkingBtn4_2() {
-        if (((mColorOfBtn[3][1] == mColorOfBtn[3][0]) && (mColorOfBtn[3][1] == mColorOfBtn[3][2]) &&
-                (mColorOfBtn[3][1] == mColorOfBtn[3][3])) || ((mColorOfBtn[3][1] == mColorOfBtn[3][2])
-                && (mColorOfBtn[3][1] == mColorOfBtn[3][3]) && (mColorOfBtn[3][1] == mColorOfBtn[3][4])) ||
-                ((mColorOfBtn[3][1] == mColorOfBtn[0][1]) && (mColorOfBtn[3][1] == mColorOfBtn[1][1])
-                        && (mColorOfBtn[3][1] == mColorOfBtn[2][1])) || ((mColorOfBtn[3][1] == mColorOfBtn[1][1])
-                && (mColorOfBtn[3][1] == mColorOfBtn[2][1]) && (mColorOfBtn[3][1] == mColorOfBtn[4][1])) ||
-                ((mColorOfBtn[3][1] == mColorOfBtn[0][4]) && (mColorOfBtn[3][1] == mColorOfBtn[1][3]) &&
-                        (mColorOfBtn[3][1] == mColorOfBtn[2][2])) || ((mColorOfBtn[3][1] == mColorOfBtn[1][3])
-                && (mColorOfBtn[3][1] == mColorOfBtn[2][2]) && (mColorOfBtn[3][1] == mColorOfBtn[4][0]))) {
-            if (mColorOfBtn[3][1] == 1) {
-                Snackbar.make(mFrameLayout4InARow, R.string.player1_is_winner, Snackbar.LENGTH_SHORT).show();
-                disableButton();
-            } else if (mColorOfBtn[3][1] == 2) {
-                Snackbar.make(mFrameLayout4InARow, R.string.player2_is_winner, Snackbar.LENGTH_SHORT).show();
-                disableButton();
-            }
-
-
-        }
+        checkingWinnerThree(3, 1, 2, 3, 1, 2, 0, 4, 1, 3, 2, 2, 1, 3, 2, 2, 4, 0);
     }
 
     private void checkingBtn4_3() {
-        if (((mColorOfBtn[3][2] == mColorOfBtn[3][0]) && (mColorOfBtn[3][2] == mColorOfBtn[3][1]) &&
-                (mColorOfBtn[3][2] == mColorOfBtn[3][3])) || ((mColorOfBtn[3][2] == mColorOfBtn[3][1])
-                && (mColorOfBtn[3][2] == mColorOfBtn[3][3]) && (mColorOfBtn[3][2] == mColorOfBtn[3][4])) ||
-                ((mColorOfBtn[3][2] == mColorOfBtn[0][2]) && (mColorOfBtn[3][2] == mColorOfBtn[1][2])
-                        && (mColorOfBtn[3][2] == mColorOfBtn[2][2])) || ((mColorOfBtn[3][2] == mColorOfBtn[1][2]) &&
-                (mColorOfBtn[3][2] == mColorOfBtn[2][2]) && (mColorOfBtn[3][2] == mColorOfBtn[4][2])) ||
-                ((mColorOfBtn[3][2] == mColorOfBtn[1][0]) && (mColorOfBtn[3][2] == mColorOfBtn[2][1])
-                        && (mColorOfBtn[3][2] == mColorOfBtn[4][3])) || ((mColorOfBtn[3][2] == mColorOfBtn[1][4]) &&
-                (mColorOfBtn[3][2] == mColorOfBtn[2][3]) && (mColorOfBtn[3][2] == mColorOfBtn[4][1]))) {
-            if (mColorOfBtn[3][2] == 1) {
-                Snackbar.make(mFrameLayout4InARow, R.string.player1_is_winner, Snackbar.LENGTH_SHORT).show();
-                disableButton();
-            } else if (mColorOfBtn[3][2] == 2) {
-                Snackbar.make(mFrameLayout4InARow, R.string.player2_is_winner, Snackbar.LENGTH_SHORT).show();
-                disableButton();
-            }
-
-
-        }
+        checkingWinnerThree(3, 2, 1, 3, 1, 2, 1, 0, 2, 1, 4, 3, 1, 4, 2, 3, 4, 1);
     }
 
     private void checkingBtn4_4() {
-        if (((mColorOfBtn[3][3] == mColorOfBtn[3][0]) && (mColorOfBtn[3][3] == mColorOfBtn[3][1]) &&
-                (mColorOfBtn[3][3] == mColorOfBtn[3][2])) || ((mColorOfBtn[3][3] == mColorOfBtn[3][1])
-                && (mColorOfBtn[3][3] == mColorOfBtn[3][2]) && (mColorOfBtn[3][3] == mColorOfBtn[3][4])) ||
-                ((mColorOfBtn[3][3] == mColorOfBtn[0][3]) && (mColorOfBtn[3][3] == mColorOfBtn[1][3])
-                        && (mColorOfBtn[3][3] == mColorOfBtn[2][3])) || ((mColorOfBtn[3][3] == mColorOfBtn[1][3])
-                && (mColorOfBtn[3][3] == mColorOfBtn[2][3]) && (mColorOfBtn[3][3] == mColorOfBtn[4][3])) ||
-                ((mColorOfBtn[3][3] == mColorOfBtn[0][0]) && (mColorOfBtn[3][3] == mColorOfBtn[1][1]) &&
-                        (mColorOfBtn[3][3] == mColorOfBtn[2][2])) || ((mColorOfBtn[3][3] == mColorOfBtn[1][1])
-                && (mColorOfBtn[3][3] == mColorOfBtn[2][2]) && (mColorOfBtn[3][3] == mColorOfBtn[4][4]))) {
-            if (mColorOfBtn[3][3] == 1) {
-                Snackbar.make(mFrameLayout4InARow, R.string.player1_is_winner, Snackbar.LENGTH_SHORT).show();
-                disableButton();
-            } else if (mColorOfBtn[3][3] == 2) {
-                Snackbar.make(mFrameLayout4InARow, R.string.player2_is_winner, Snackbar.LENGTH_SHORT).show();
-                disableButton();
-            }
-
-
-        }
+        checkingWinnerThree(3, 3, 1, 2, 1, 2, 0, 0, 1, 1, 2, 2, 1, 1, 2, 2, 4, 4);
     }
 
     private void checkingBtn4_5() {
-        if (((mColorOfBtn[3][4] == mColorOfBtn[3][1]) && (mColorOfBtn[3][4] == mColorOfBtn[3][2]) &&
-                (mColorOfBtn[3][4] == mColorOfBtn[3][3])) || ((mColorOfBtn[3][4] == mColorOfBtn[0][4])
-                && (mColorOfBtn[3][4] == mColorOfBtn[1][4]) && (mColorOfBtn[3][4] == mColorOfBtn[2][4])) ||
-                ((mColorOfBtn[3][4] == mColorOfBtn[1][4]) && (mColorOfBtn[3][4] == mColorOfBtn[2][4])
-                        && (mColorOfBtn[3][4] == mColorOfBtn[4][4])) || ((mColorOfBtn[3][4] == mColorOfBtn[0][1]) &&
-                (mColorOfBtn[3][4] == mColorOfBtn[1][2]) && (mColorOfBtn[3][4] == mColorOfBtn[2][3]))) {
-            if (mColorOfBtn[3][4] == 1) {
-                Snackbar.make(mFrameLayout4InARow, R.string.player1_is_winner, Snackbar.LENGTH_SHORT).show();
-                disableButton();
-            } else if (mColorOfBtn[3][4] == 2) {
-                Snackbar.make(mFrameLayout4InARow, R.string.player2_is_winner, Snackbar.LENGTH_SHORT).show();
-                disableButton();
-            }
-
-
-        }
+        checkingWinnerTwo(3, 4, 1, 2, 3, 0, 4, 1, 4, 2, 4, 1, 2, 4, 0, 1, 1, 2, 2, 3);
     }
 
     private void checkingBtn5_1() {
-        if (((mColorOfBtn[4][0] == mColorOfBtn[4][1]) && (mColorOfBtn[4][0] == mColorOfBtn[4][2]) &&
-                (mColorOfBtn[4][0] == mColorOfBtn[4][3])) || ((mColorOfBtn[4][0] == mColorOfBtn[1][0])
-                && (mColorOfBtn[4][0] == mColorOfBtn[2][0]) && (mColorOfBtn[4][0] == mColorOfBtn[3][0]))
-                || ((mColorOfBtn[4][0] == mColorOfBtn[1][3]) && (mColorOfBtn[4][0] == mColorOfBtn[2][2])
-                && (mColorOfBtn[4][0] == mColorOfBtn[3][1]))) {
-            if (mColorOfBtn[4][0] == 1) {
-                Snackbar.make(mFrameLayout4InARow, R.string.player1_is_winner, Snackbar.LENGTH_SHORT).show();
-                disableButton();
-            } else if (mColorOfBtn[4][0] == 2) {
-                Snackbar.make(mFrameLayout4InARow, R.string.player2_is_winner, Snackbar.LENGTH_SHORT).show();
-                disableButton();
-            }
-
-
-        }
+        checkingWinnerOne(4, 0, 4, 1, 4, 2, 4, 3, 1, 0, 2, 0, 3, 0, 1, 3, 2, 2, 3, 1);
     }
 
     private void checkingBtn5_2() {
-        if (((mColorOfBtn[4][1] == mColorOfBtn[4][0]) && (mColorOfBtn[4][1] == mColorOfBtn[4][2]) &&
-                (mColorOfBtn[4][1] == mColorOfBtn[4][3])) || ((mColorOfBtn[4][1] == mColorOfBtn[4][2])
-                && (mColorOfBtn[4][1] == mColorOfBtn[4][3]) && (mColorOfBtn[4][1] == mColorOfBtn[4][4])) ||
-                ((mColorOfBtn[4][1] == mColorOfBtn[1][1]) && (mColorOfBtn[4][1] == mColorOfBtn[2][1])
-                        && (mColorOfBtn[4][1] == mColorOfBtn[3][1])) || ((mColorOfBtn[4][1] == mColorOfBtn[1][4])
-                && (mColorOfBtn[4][1] == mColorOfBtn[2][3]) && (mColorOfBtn[4][1] == mColorOfBtn[3][2]))) {
-            if (mColorOfBtn[4][1] == 1) {
-                Snackbar.make(mFrameLayout4InARow, R.string.player1_is_winner, Snackbar.LENGTH_SHORT).show();
-                disableButton();
-            } else if (mColorOfBtn[4][1] == 2) {
-                Snackbar.make(mFrameLayout4InARow, R.string.player2_is_winner, Snackbar.LENGTH_SHORT).show();
-                disableButton();
-            }
-
-
-        }
+        checkingWinnerTwo(4, 1, 0, 2, 3, 4, 2, 4, 3, 4, 4, 1, 2, 3, 1, 4, 2, 3, 3, 2);
     }
 
     private void checkingBtn5_3() {
-        if (((mColorOfBtn[4][2] == mColorOfBtn[4][0]) && (mColorOfBtn[4][2] == mColorOfBtn[4][1]) &&
-                (mColorOfBtn[4][2] == mColorOfBtn[4][3])) || ((mColorOfBtn[4][2] == mColorOfBtn[4][1])
-                && (mColorOfBtn[4][2] == mColorOfBtn[4][3]) && (mColorOfBtn[4][2] == mColorOfBtn[4][4])) ||
-                ((mColorOfBtn[4][2] == mColorOfBtn[1][2]) && (mColorOfBtn[4][2] == mColorOfBtn[2][2])
-                        && (mColorOfBtn[4][2] == mColorOfBtn[3][2]))) {
-            if (mColorOfBtn[4][2] == 1) {
-                Snackbar.make(mFrameLayout4InARow, R.string.player1_is_winner, Snackbar.LENGTH_SHORT).show();
-                disableButton();
-            } else if (mColorOfBtn[4][2] == 2) {
-                Snackbar.make(mFrameLayout4InARow, R.string.player2_is_winner, Snackbar.LENGTH_SHORT).show();
-                disableButton();
-            }
-
-
-        }
+        checkingWinnerOne(4, 2, 4, 0, 4, 1, 4, 3, 4, 1, 4, 3, 4, 4, 1, 2, 2, 2, 3, 2);
     }
 
     private void checkingBtn5_4() {
-        if (((mColorOfBtn[4][3] == mColorOfBtn[4][0]) && (mColorOfBtn[4][3] == mColorOfBtn[4][1]) &&
-                (mColorOfBtn[4][3] == mColorOfBtn[4][2])) || ((mColorOfBtn[4][3] == mColorOfBtn[4][1])
-                && (mColorOfBtn[4][3] == mColorOfBtn[4][2]) && (mColorOfBtn[4][3] == mColorOfBtn[4][4])) ||
-                ((mColorOfBtn[4][3] == mColorOfBtn[1][3]) && (mColorOfBtn[4][3] == mColorOfBtn[2][3])
-                        && (mColorOfBtn[4][3] == mColorOfBtn[3][3])) || ((mColorOfBtn[4][3] == mColorOfBtn[1][0])
-                && (mColorOfBtn[4][3] == mColorOfBtn[2][1]) && (mColorOfBtn[4][3] == mColorOfBtn[3][2]))) {
-            if (mColorOfBtn[4][3] == 1) {
-                Snackbar.make(mFrameLayout4InARow, R.string.player1_is_winner, Snackbar.LENGTH_SHORT).show();
-                disableButton();
-            } else if (mColorOfBtn[4][3] == 2) {
-                Snackbar.make(mFrameLayout4InARow, R.string.player2_is_winner, Snackbar.LENGTH_SHORT).show();
-                disableButton();
-            }
-
-
-        }
+        checkingWinnerTwo(4, 3, 0, 1, 2, 4, 1, 4, 2, 4, 4, 1, 2, 3, 1, 0, 2, 1, 3, 2);
     }
 
     private void checkingBtn5_5() {
-        if (((mColorOfBtn[4][4] == mColorOfBtn[4][1]) && (mColorOfBtn[4][4] == mColorOfBtn[4][2]) &&
-                (mColorOfBtn[4][4] == mColorOfBtn[4][3])) || ((mColorOfBtn[4][4] == mColorOfBtn[1][4])
-                && (mColorOfBtn[4][4] == mColorOfBtn[2][4]) && (mColorOfBtn[4][4] == mColorOfBtn[3][4])) ||
-                ((mColorOfBtn[4][4] == mColorOfBtn[1][1]) && (mColorOfBtn[4][4] == mColorOfBtn[2][2])
-                        && (mColorOfBtn[4][4] == mColorOfBtn[3][3]))) {
-            if (mColorOfBtn[4][4] == 1) {
-                Snackbar.make(mFrameLayout4InARow, R.string.player1_is_winner, Snackbar.LENGTH_SHORT).show();
-                disableButton();
-            } else if (mColorOfBtn[4][4] == 2) {
-                Snackbar.make(mFrameLayout4InARow, R.string.player2_is_winner, Snackbar.LENGTH_SHORT).show();
-                disableButton();
-            }
-
-
-        }
+        checkingWinnerOne(4, 4, 4, 1, 4, 2, 4, 3, 1, 4, 2, 4, 3, 4, 1, 1, 2, 2, 3, 3);
     }
 }
