@@ -8,6 +8,7 @@ import androidx.fragment.app.FragmentManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.FrameLayout;
 
 public class GameActivity extends AppCompatActivity {
     public static final String BUNDLE_KEY_FLAG_TIC_TAC_TOE = "flag_tic_tac_toe";
@@ -18,6 +19,7 @@ public class GameActivity extends AppCompatActivity {
     private FragmentManager mFragmentManager;
     private TicTacToeFragment ticTacToeFragment;
     private _4InARowFragment inARowFragment;
+
 
     private boolean flag_ticTacToe = false, flag_4_inARow = false;
 
@@ -72,6 +74,8 @@ public class GameActivity extends AppCompatActivity {
                             .add(R.id.fragment_container, ticTacToeFragment)
                             .commit();
                 }
+                /*mButton4_in_a_Row.setClickable(true);
+                mButtonTicTacToe.setClickable(false);*/
                 flag_ticTacToe = true;
                 flag_4_inARow = false;
             }
@@ -97,8 +101,11 @@ public class GameActivity extends AppCompatActivity {
                             .add(R.id.fragment_container, inARowFragment)
                             .commit();
                 }
+                /*mButton4_in_a_Row.setClickable(false);
+                mButtonTicTacToe.setClickable(true);*/
                 flag_4_inARow = true;
                 flag_ticTacToe = false;
+
             }
         });
     }

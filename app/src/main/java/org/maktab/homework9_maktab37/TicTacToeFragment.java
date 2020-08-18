@@ -25,10 +25,12 @@ public class TicTacToeFragment extends Fragment {
     public static final String BUNDLE_KEY_BTN_3_2 = "btn3_2";
     public static final String BUNDLE_KEY_BTN_3_3 = "btn3_3";
     public static final String BUNDLE_KEY_FLAG_GAME_OVER = "flagGameOver";
+    public static final String BUNDLE_KEY_GAME_OVER_COUNTER = "gameOverCounter";
     private String btn1_1,btn1_2,btn1_3,btn2_1,btn2_2,btn2_3,btn3_1,btn3_2,btn3_3;
     private Button mButton1_1,mButton1_2,mButton1_3,mButton2_1,mButton2_2,mButton2_3,mButton3_1
             ,mButton3_2,mButton3_3;
     private FrameLayout mFrameLayoutTicTacToe;
+    private short gameOverCounter;
     private boolean flagGameOver = false;
 
     private short player;
@@ -42,6 +44,7 @@ public class TicTacToeFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         player = 1;
+        gameOverCounter = 0;
     }
 
     @Override
@@ -51,6 +54,7 @@ public class TicTacToeFragment extends Fragment {
         if (savedInstanceState != null){
             player = savedInstanceState.getShort(BUNDLE_KEY_PLAYER);
             flagGameOver = savedInstanceState.getBoolean(BUNDLE_KEY_FLAG_GAME_OVER);
+            gameOverCounter = savedInstanceState.getShort(BUNDLE_KEY_GAME_OVER_COUNTER);
             btn1_1 = savedInstanceState.getString(BUNDLE_KEY_BTN_1_1);
             btn1_2 = savedInstanceState.getString(BUNDLE_KEY_BTN_1_2);
             btn1_3 = savedInstanceState.getString(BUNDLE_KEY_BTN_1_3);
@@ -86,6 +90,7 @@ public class TicTacToeFragment extends Fragment {
 
         outState.putShort(BUNDLE_KEY_PLAYER,player);
         outState.putBoolean(BUNDLE_KEY_FLAG_GAME_OVER,flagGameOver);
+        outState.putShort(BUNDLE_KEY_GAME_OVER_COUNTER,gameOverCounter);
         outState.putString(BUNDLE_KEY_BTN_1_1,mButton1_1.getText().toString());
         outState.putString(BUNDLE_KEY_BTN_1_2,mButton1_2.getText().toString());
         outState.putString(BUNDLE_KEY_BTN_1_3,mButton1_3.getText().toString());
@@ -107,6 +112,7 @@ public class TicTacToeFragment extends Fragment {
                     else
                         mButton1_1.setText(R.string.player2);
                     player++;
+                    gameOverCounter++;
                 }
                 if (checkPlayer(mButton1_1,mButton1_2,mButton1_3,"X") ||
                         checkPlayer(mButton1_1,mButton2_1,mButton3_1,"X") ||
@@ -121,6 +127,8 @@ public class TicTacToeFragment extends Fragment {
                     disableButton();
                     flagGameOver = true;
                     Snackbar.make(mFrameLayoutTicTacToe,R.string.player2_is_winner,Snackbar.LENGTH_SHORT).show();
+                }else if (gameOverCounter == 9){
+                    Snackbar.make(mFrameLayoutTicTacToe,R.string.gameOver,Snackbar.LENGTH_SHORT).show();
                 }
 
             }
@@ -134,6 +142,7 @@ public class TicTacToeFragment extends Fragment {
                     else
                         mButton1_2.setText(R.string.player2);
                     player++;
+                    gameOverCounter++;
                 }
                 if (checkPlayer(mButton1_1,mButton1_2,mButton1_3,"X") ||
                         checkPlayer(mButton1_2,mButton2_2,mButton3_2,"X")){
@@ -146,6 +155,8 @@ public class TicTacToeFragment extends Fragment {
                     disableButton();
                     flagGameOver = true;
                     Snackbar.make(mFrameLayoutTicTacToe,R.string.player2_is_winner,Snackbar.LENGTH_SHORT).show();
+                }else if (gameOverCounter == 9){
+                    Snackbar.make(mFrameLayoutTicTacToe,R.string.gameOver,Snackbar.LENGTH_SHORT).show();
                 }
             }
         });
@@ -158,6 +169,7 @@ public class TicTacToeFragment extends Fragment {
                     else
                         mButton1_3.setText(R.string.player2);
                     player++;
+                    gameOverCounter++;
                 }
                 if (checkPlayer(mButton1_1,mButton1_2,mButton1_3,"X") ||
                         checkPlayer(mButton1_3,mButton2_3,mButton3_3,"X") ||
@@ -172,6 +184,8 @@ public class TicTacToeFragment extends Fragment {
                     disableButton();
                     flagGameOver = true;
                     Snackbar.make(mFrameLayoutTicTacToe,R.string.player2_is_winner,Snackbar.LENGTH_SHORT).show();
+                }else if (gameOverCounter == 9){
+                    Snackbar.make(mFrameLayoutTicTacToe,R.string.gameOver,Snackbar.LENGTH_SHORT).show();
                 }
             }
         });
@@ -184,6 +198,7 @@ public class TicTacToeFragment extends Fragment {
                     else
                         mButton2_1.setText(R.string.player2);
                     player++;
+                    gameOverCounter++;
                 }
                 if (checkPlayer(mButton2_1,mButton2_2,mButton2_3,"X") ||
                         checkPlayer(mButton1_1,mButton2_1,mButton3_1,"X")){
@@ -196,6 +211,8 @@ public class TicTacToeFragment extends Fragment {
                     disableButton();
                     flagGameOver = true;
                     Snackbar.make(mFrameLayoutTicTacToe,R.string.player2_is_winner,Snackbar.LENGTH_SHORT).show();
+                }else if (gameOverCounter == 9){
+                    Snackbar.make(mFrameLayoutTicTacToe,R.string.gameOver,Snackbar.LENGTH_SHORT).show();
                 }
             }
         });
@@ -208,6 +225,7 @@ public class TicTacToeFragment extends Fragment {
                     else
                         mButton2_2.setText(R.string.player2);
                     player++;
+                    gameOverCounter++;
                 }
                 if (checkPlayer(mButton1_2,mButton2_2,mButton3_2,"X") ||
                         checkPlayer(mButton2_1,mButton2_2,mButton2_3,"X")){
@@ -220,6 +238,8 @@ public class TicTacToeFragment extends Fragment {
                     disableButton();
                     flagGameOver = true;
                     Snackbar.make(mFrameLayoutTicTacToe,R.string.player2_is_winner,Snackbar.LENGTH_SHORT).show();
+                }else if (gameOverCounter == 9){
+                    Snackbar.make(mFrameLayoutTicTacToe,R.string.gameOver,Snackbar.LENGTH_SHORT).show();
                 }
             }
         });
@@ -232,6 +252,7 @@ public class TicTacToeFragment extends Fragment {
                     else
                         mButton2_3.setText(R.string.player2);
                     player++;
+                    gameOverCounter++;
                 }
                 if (checkPlayer(mButton1_3,mButton2_3,mButton3_3,"X") ||
                         checkPlayer(mButton2_1,mButton2_2,mButton2_3,"X")){
@@ -244,6 +265,8 @@ public class TicTacToeFragment extends Fragment {
                     disableButton();
                     flagGameOver = true;
                     Snackbar.make(mFrameLayoutTicTacToe,R.string.player2_is_winner,Snackbar.LENGTH_SHORT).show();
+                }else if (gameOverCounter == 9){
+                    Snackbar.make(mFrameLayoutTicTacToe,R.string.gameOver,Snackbar.LENGTH_SHORT).show();
                 }
             }
         });
@@ -256,6 +279,7 @@ public class TicTacToeFragment extends Fragment {
                     else
                         mButton3_1.setText(R.string.player2);
                     player++;
+                    gameOverCounter++;
                 }
                 if (checkPlayer(mButton1_1,mButton2_1,mButton3_1,"X") ||
                         checkPlayer(mButton3_1,mButton3_2,mButton3_3,"X") ||
@@ -270,6 +294,8 @@ public class TicTacToeFragment extends Fragment {
                     disableButton();
                     flagGameOver = true;
                     Snackbar.make(mFrameLayoutTicTacToe,R.string.player2_is_winner,Snackbar.LENGTH_SHORT).show();
+                }else if (gameOverCounter == 9){
+                    Snackbar.make(mFrameLayoutTicTacToe,R.string.gameOver,Snackbar.LENGTH_SHORT).show();
                 }
             }
         });
@@ -282,6 +308,7 @@ public class TicTacToeFragment extends Fragment {
                     else
                         mButton3_2.setText(R.string.player2);
                     player++;
+                    gameOverCounter++;
                 }
                 if (checkPlayer(mButton3_1,mButton3_2,mButton3_3,"X") ||
                         checkPlayer(mButton1_2,mButton2_2,mButton3_2,"X")){
@@ -294,6 +321,8 @@ public class TicTacToeFragment extends Fragment {
                     disableButton();
                     flagGameOver = true;
                     Snackbar.make(mFrameLayoutTicTacToe,R.string.player2_is_winner,Snackbar.LENGTH_SHORT).show();
+                }else if (gameOverCounter == 9){
+                    Snackbar.make(mFrameLayoutTicTacToe,R.string.gameOver,Snackbar.LENGTH_SHORT).show();
                 }
             }
         });
@@ -306,6 +335,7 @@ public class TicTacToeFragment extends Fragment {
                     else
                         mButton3_3.setText(R.string.player2);
                     player++;
+                    gameOverCounter++;
                 }
                 if (checkPlayer(mButton1_3,mButton2_3,mButton3_3,"X") ||
                         checkPlayer(mButton3_1,mButton3_2,mButton3_3,"X") ||
@@ -320,6 +350,8 @@ public class TicTacToeFragment extends Fragment {
                     disableButton();
                     flagGameOver = true;
                     Snackbar.make(mFrameLayoutTicTacToe,R.string.player2_is_winner,Snackbar.LENGTH_SHORT).show();
+                }else if (gameOverCounter == 9){
+                    Snackbar.make(mFrameLayoutTicTacToe,R.string.gameOver,Snackbar.LENGTH_SHORT).show();
                 }
             }
         });
