@@ -5,6 +5,7 @@
     android:id="@+id/framelayout_ticTacToe"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/backGround_ticTacToe"
     tools:context=".TicTacToeFragment">
 
     <!-- TODO: Update blank fragment layout -->

@@ -8,27 +8,23 @@ import androidx.fragment.app.FragmentManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.FrameLayout;
 
 public class GameActivity extends AppCompatActivity {
-    public static final String BUNDLE_KEY_FLAG_TIC_TAC_TOE = "flag_tic_tac_toe";
-    public static final String BUNDLE_KEY_FLAG_4_IN_A_ROW = "flag_4_in_a_row";
+    public static final String BUNDLE_KEY_FLAG_CHANGE = "flagChange";
+    public static final String BUNDLE_KEY_FLAG_WHICH_ONE = "flagWhichOne";
     private Button mButtonTicTacToe;
     private Button mButton4_in_a_Row;
-    private Fragment mFragment;
-    private FragmentManager mFragmentManager;
-    private TicTacToeFragment ticTacToeFragment;
-    private _4InARowFragment inARowFragment;
 
 
-    private boolean flag_ticTacToe = false, flag_4_inARow = false;
+    private int mFlagChange;
+    private boolean mFlagWhichOne = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (savedInstanceState != null){
-            flag_ticTacToe = savedInstanceState.getBoolean(BUNDLE_KEY_FLAG_TIC_TAC_TOE);
-            flag_4_inARow = savedInstanceState.getBoolean(BUNDLE_KEY_FLAG_4_IN_A_ROW);
+            mFlagChange = savedInstanceState.getInt(BUNDLE_KEY_FLAG_CHANGE);
+            mFlagWhichOne = savedInstanceState.getBoolean(BUNDLE_KEY_FLAG_WHICH_ONE);
         }
         setContentView(R.layout.activity_game);
 
@@ -37,77 +33,70 @@ public class GameActivity extends AppCompatActivity {
         findViews();
         listeners();
 
-        mFragmentManager = getSupportFragmentManager();
-        mFragment = mFragmentManager.findFragmentById(R.id.fragment_container);
-        ticTacToeFragment = new TicTacToeFragment();
-        inARowFragment = new _4InARowFragment();
-
     }
 
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
 
-        outState.putBoolean(BUNDLE_KEY_FLAG_TIC_TAC_TOE,flag_ticTacToe);
-        outState.putBoolean(BUNDLE_KEY_FLAG_4_IN_A_ROW,flag_4_inARow);
+        outState.putInt(BUNDLE_KEY_FLAG_CHANGE,mFlagChange);
+        outState.putBoolean(BUNDLE_KEY_FLAG_WHICH_ONE, mFlagWhichOne);
     }
 
     private void listeners() {
         mButtonTicTacToe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (!flag_ticTacToe && !flag_4_inARow) {
-                    mFragmentManager
-                            .beginTransaction()
-                            .add(R.id.fragment_container, ticTacToeFragment)
-                            .commit();
-                }else if (!flag_ticTacToe){
-                    mFragmentManager
-                            .beginTransaction()
-                            .remove(inARowFragment)
-                            .add(R.id.fragment_container, ticTacToeFragment)
-                            .commit();
-                }else if (!flag_4_inARow){
-                    mFragmentManager
-                            .beginTransaction()
-                            .remove(ticTacToeFragment)
-                            .add(R.id.fragment_container, ticTacToeFragment)
-                            .commit();
-                }
-                /*mButton4_in_a_Row.setClickable(true);
-                mButtonTicTacToe.setClickable(false);*/
-                flag_ticTacToe = true;
-                flag_4_inARow = false;
+                mFlagChange = 1;
+                changeFragment();
+                mFlagWhichOne = true;
             }
         });
         mButton4_in_a_Row.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (!flag_ticTacToe && !flag_4_inARow) {
-                    mFragmentManager
-                            .beginTransaction()
-                            .add(R.id.fragment_container, inARowFragment)
-                            .commit();
-                }else if (!flag_ticTacToe){
-                    mFragmentManager
-                            .beginTransaction()
-                            .remove(inARowFragment)
-                            .add(R.id.fragment_container, inARowFragment)
-                            .commit();
-                }else if (!flag_4_inARow){
-                    mFragmentManager
-                            .beginTransaction()
-                            .remove(ticTacToeFragment)
-                            .add(R.id.fragment_container, inARowFragment)
-                            .commit();
-                }
-                /*mButton4_in_a_Row.setClickable(false);
-                mButtonTicTacToe.setClickable(true);*/
-                flag_4_inARow = true;
-                flag_ticTacToe = false;
-
+                mFlagChange = 2;
+                changeFragment();
+                mFlagWhichOne = true;
             }
         });
+
+    }
+
+    private void changeFragment(){
+        Fragment fragment;
+
+        if (mFlagChange == 1 && !mFlagWhichOne){
+            fragment = new TicTacToeFragment();
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            fragmentManager
+                    .beginTransaction()
+                    .add(R.id.fragment_container,fragment)
+                    .commit();
+        }else if (mFlagChange == 1){
+            fragment = new TicTacToeFragment();
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            fragmentManager
+                    .beginTransaction()
+                    .replace(R.id.fragment_container,fragment)
+                    .commit();
+        }
+        if (mFlagChange == 2 && !mFlagWhichOne){
+            fragment = new _4InARowFragment();
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            fragmentManager
+                    .beginTransaction()
+                    .add(R.id.fragment_container,fragment)
+                    .commit();
+        }else if (mFlagChange == 2){
+            fragment = new _4InARowFragment();
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            fragmentManager
+                    .beginTransaction()
+                    .replace(R.id.fragment_container,fragment)
+                    .commit();
+        }
+
     }
 
     private void findViews() {

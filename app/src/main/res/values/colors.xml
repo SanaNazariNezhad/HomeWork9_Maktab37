@@ -5,4 +5,6 @@
     <color name="colorAccent">#03DAC5</color>
     <color name="player1_blue">#303F9F</color>
     <color name="player2_red">#D32F2F</color>
+    <color name="backGround_ticTacToe">#009688</color>
+    <color name="backGround_4InARow">#4caf50</color>
 </resources>

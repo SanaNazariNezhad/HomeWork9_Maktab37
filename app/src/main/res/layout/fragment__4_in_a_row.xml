@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/framelayout_4inARow"
+    android:background="@color/backGround_4InARow"
     tools:context="._4InARowFragment">
 
     <!-- TODO: Update blank fragment layout -->
