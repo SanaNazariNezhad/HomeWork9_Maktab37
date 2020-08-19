@@ -19,12 +19,10 @@ public class GameActivity extends AppCompatActivity {
     public static final String BUNDLE_KEY_FLAG_CHANGE = "flagChange";
     public static final String BUNDLE_KEY_FLAG_WHICH_ONE = "flagWhichOne";
     public static final int REQUEST_CODE_SETTING = 0;
-    public static final int REQUEST_CODE_TicTacToe = 1;
-    public static final int REQUEST_CODE_4InARow = 2;
     public static final String BUNDLE_KEY_SETTING = "bundle_setting";
     public static final String EXTRA_SETTING = "extra_setting";
-    private Button mButtonTicTacToe;
-    private Button mButton4_in_a_Row;
+    private ImageButton mButtonTicTacToe;
+    private ImageButton mButton4_in_a_Row;
     private ImageButton mImageButtonSetting;
 
     private Setting mSetting = new Setting();
