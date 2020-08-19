@@ -10,4 +10,9 @@
     <string name="gameOver">Game Over</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="name_of_player_one">Name of Player one:</string>
+    <string name="name">Name</string>
+    <string name="name_of_player_two">Name Of Player Two</string>
+    <string name="player2_name">Player2 :</string>
+    <string name="player1_name">Player1 :</string>
 </resources>
