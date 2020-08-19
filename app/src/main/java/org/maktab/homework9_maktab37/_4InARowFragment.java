@@ -1,5 +1,7 @@
 package org.maktab.homework9_maktab37;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -12,6 +14,8 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 
 import com.google.android.material.snackbar.Snackbar;
+
+import org.maktab.homework9_maktab37.model.Setting;
 
 public class _4InARowFragment extends Fragment {
     public static final String BUNDLE_KEY_PLAYER = "player";
@@ -26,6 +30,8 @@ public class _4InARowFragment extends Fragment {
     public static final String BUNDLE_KEY_COLOR_OF_BUTTONS_4 = "colorOfButtons4";
     public static final String BUNDLE_KEY_COLOR_OF_BUTTONS_5 = "colorOfButtons5";
     public static final String BUNDLE_KEY_FLAG_OF_END = "flagOfEnd";
+    public static final String BUNDLE_KEY_SETTING = "setting";
+    public static final String EXTRA_SETTING = "setting";
     private Button mButton1_1, mButton1_2, mButton1_3, mButton1_4, mButton1_5, mButton2_1, mButton2_2,
             mButton2_3, mButton2_4, mButton2_5, mButton3_1, mButton3_2, mButton3_3, mButton3_4, mButton3_5,
             mButton4_1, mButton4_2, mButton4_3, mButton4_4, mButton4_5, mButton5_1, mButton5_2, mButton5_3,
@@ -35,6 +41,7 @@ public class _4InARowFragment extends Fragment {
     private FrameLayout mFrameLayout4InARow;
     private int[][] mColorOfBtn;
     private boolean flag;
+    private Setting mSetting = new Setting();
 
     public _4InARowFragment() {
         // Required empty public constructor
@@ -70,9 +77,11 @@ public class _4InARowFragment extends Fragment {
             mColorOfBtn[3] = savedInstanceState.getIntArray(BUNDLE_KEY_COLOR_OF_BUTTONS_4);
             mColorOfBtn[4] = savedInstanceState.getIntArray(BUNDLE_KEY_COLOR_OF_BUTTONS_5);
             flag = savedInstanceState.getBoolean(BUNDLE_KEY_FLAG_OF_END);
+            mSetting = (Setting) savedInstanceState.getSerializable(BUNDLE_KEY_SETTING);
         }
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment__4_in_a_row, container, false);
+        mSetting = (Setting) getArguments().getSerializable(GameActivity.EXTRA_SETTING);
         findViews(view);
         checkColor();
         listeners();
@@ -249,6 +258,7 @@ public class _4InARowFragment extends Fragment {
         outState.putIntArray(BUNDLE_KEY_COLOR_OF_BUTTONS_3,mColorOfBtn[2]);
         outState.putIntArray(BUNDLE_KEY_COLOR_OF_BUTTONS_4,mColorOfBtn[3]);
         outState.putIntArray(BUNDLE_KEY_COLOR_OF_BUTTONS_5,mColorOfBtn[4]);
+        outState.putSerializable(BUNDLE_KEY_SETTING,mSetting);
     }
 
     private void checkColor(){
@@ -762,11 +772,15 @@ public class _4InARowFragment extends Fragment {
                 || ((mColorOfBtn[arr[0]][arr[1]] == mColorOfBtn[arr[14]][arr[15]]) && (mColorOfBtn[arr[0]][arr[1]] == mColorOfBtn[arr[16]][arr[17]])
                 && (mColorOfBtn[arr[0]][arr[1]] == mColorOfBtn[arr[18]][arr[19]]))) {
             if (mColorOfBtn[arr[0]][arr[1]] == 1) {
-                Snackbar.make(mFrameLayout4InARow, R.string.player1_is_winner, Snackbar.LENGTH_SHORT).show();
+                mSetting.setPlayer1_score(mSetting.getPlayer1_score() + 1);
+                callSnackbar(mSetting.getPlayer1());
+                setResultOfScore();
                 disableButton();
                 flag = true;
             } else if (mColorOfBtn[arr[0]][arr[1]] == 2) {
-                Snackbar.make(mFrameLayout4InARow, R.string.player2_is_winner, Snackbar.LENGTH_SHORT).show();
+                mSetting.setPlayer2_score(mSetting.getPlayer2_score() + 1);
+                callSnackbar(mSetting.getPlayer2());
+                setResultOfScore();
                 disableButton();
                 flag = true;
             }
@@ -781,11 +795,15 @@ public class _4InARowFragment extends Fragment {
                         && (mColorOfBtn[arr[0]][arr[1]] == mColorOfBtn[arr[13]][arr[1]])) || ((mColorOfBtn[arr[0]][arr[1]] == mColorOfBtn[arr[14]][arr[15]])
                 && (mColorOfBtn[arr[0]][arr[1]] == mColorOfBtn[arr[16]][arr[17]]) && (mColorOfBtn[arr[0]][arr[1]] == mColorOfBtn[arr[18]][arr[19]]))) {
             if (mColorOfBtn[arr[0]][arr[1]] == 1) {
-                Snackbar.make(mFrameLayout4InARow, R.string.player1_is_winner, Snackbar.LENGTH_SHORT).show();
+                mSetting.setPlayer1_score(mSetting.getPlayer1_score() + 1);
+                callSnackbar(mSetting.getPlayer1());
+                setResultOfScore();
                 disableButton();
                 flag = true;
             } else if (mColorOfBtn[arr[0]][arr[1]] == 2) {
-                Snackbar.make(mFrameLayout4InARow, R.string.player2_is_winner, Snackbar.LENGTH_SHORT).show();
+                mSetting.setPlayer2_score(mSetting.getPlayer2_score() + 1);
+                callSnackbar(mSetting.getPlayer2());
+                setResultOfScore();
                 disableButton();
                 flag = true;
             }
@@ -803,11 +821,15 @@ public class _4InARowFragment extends Fragment {
                         (mColorOfBtn[arr[0]][arr[1]] == mColorOfBtn[arr[10]][arr[11]])) || ((mColorOfBtn[arr[0]][arr[1]] == mColorOfBtn[arr[12]][arr[13]])
                 && (mColorOfBtn[arr[0]][arr[1]] == mColorOfBtn[arr[14]][arr[15]]) && (mColorOfBtn[arr[0]][arr[1]] == mColorOfBtn[arr[16]][arr[17]]))) {
             if (mColorOfBtn[arr[0]][arr[1]] == 1) {
-                Snackbar.make(mFrameLayout4InARow, R.string.player1_is_winner, Snackbar.LENGTH_SHORT).show();
+                mSetting.setPlayer1_score(mSetting.getPlayer1_score() + 1);
+                callSnackbar(mSetting.getPlayer1());
+                setResultOfScore();
                 disableButton();
                 flag = true;
             } else if (mColorOfBtn[arr[0]][arr[1]] == 2) {
-                Snackbar.make(mFrameLayout4InARow, R.string.player2_is_winner, Snackbar.LENGTH_SHORT).show();
+                mSetting.setPlayer2_score(mSetting.getPlayer2_score() + 1);
+                callSnackbar(mSetting.getPlayer2());
+                setResultOfScore();
                 disableButton();
                 flag = true;
             }
@@ -828,11 +850,15 @@ public class _4InARowFragment extends Fragment {
                         && (mColorOfBtn[2][2] == mColorOfBtn[3][3])) || ((mColorOfBtn[2][2] == mColorOfBtn[1][1]) &&
                 (mColorOfBtn[2][2] == mColorOfBtn[3][3]) && (mColorOfBtn[2][2] == mColorOfBtn[4][4]))) {
             if (mColorOfBtn[2][2] == 1) {
-                Snackbar.make(mFrameLayout4InARow, R.string.player1_is_winner, Snackbar.LENGTH_SHORT).show();
+                mSetting.setPlayer1_score(mSetting.getPlayer1_score() + 1);
+                callSnackbar(mSetting.getPlayer1());
+                setResultOfScore();
                 disableButton();
                 flag = true;
             } else if (mColorOfBtn[2][2] == 2) {
-                Snackbar.make(mFrameLayout4InARow, R.string.player2_is_winner, Snackbar.LENGTH_SHORT).show();
+                mSetting.setPlayer2_score(mSetting.getPlayer2_score() + 1);
+                callSnackbar(mSetting.getPlayer2());
+                setResultOfScore();
                 disableButton();
                 flag = true;
             }
@@ -915,5 +941,15 @@ public class _4InARowFragment extends Fragment {
             int[] parameters = {4,4,4,1,4,2,4,3,1,4,2,4,3,4,1,1,2,2,3,3};
             checkingWinnerOne(parameters);
         }
+    }
+
+    private void callSnackbar(String player) {
+        Snackbar.make(mFrameLayout4InARow, player + " is Winner", Snackbar.LENGTH_SHORT).show();
+    }
+
+    private void setResultOfScore() {
+        Intent intent = new Intent();
+        intent.putExtra(EXTRA_SETTING,mSetting);
+        getActivity().setResult(Activity.RESULT_OK,intent);
     }
 }

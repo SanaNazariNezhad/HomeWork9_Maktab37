@@ -19,7 +19,10 @@ public class GameActivity extends AppCompatActivity {
     public static final String BUNDLE_KEY_FLAG_CHANGE = "flagChange";
     public static final String BUNDLE_KEY_FLAG_WHICH_ONE = "flagWhichOne";
     public static final int REQUEST_CODE_SETTING = 0;
+    public static final int REQUEST_CODE_TicTacToe = 1;
+    public static final int REQUEST_CODE_4InARow = 2;
     public static final String BUNDLE_KEY_SETTING = "bundle_setting";
+    public static final String EXTRA_SETTING = "extra_setting";
     private Button mButtonTicTacToe;
     private Button mButton4_in_a_Row;
     private ImageButton mImageButtonSetting;
@@ -27,7 +30,7 @@ public class GameActivity extends AppCompatActivity {
     private Setting mSetting = new Setting();
 
     private TextView mPlayer1_name, mPlayer2_name;
-    private TextView mPlayer1_score, mPlayer2_score;
+    public TextView mPlayer1_score, mPlayer2_score;
 
 
     private int mFlagChange;
@@ -78,6 +81,8 @@ public class GameActivity extends AppCompatActivity {
         outState.putSerializable(BUNDLE_KEY_SETTING,mSetting);
     }
 
+
+
     private void listeners() {
         mButtonTicTacToe.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -109,14 +114,20 @@ public class GameActivity extends AppCompatActivity {
         Fragment fragment;
 
         if (mFlagChange == 1 && !mFlagWhichOne){
+            Bundle bundle = new Bundle();
+            bundle.putSerializable(EXTRA_SETTING,mSetting);
             fragment = new TicTacToeFragment();
+            fragment.setArguments(bundle);
             FragmentManager fragmentManager = getSupportFragmentManager();
             fragmentManager
                     .beginTransaction()
                     .add(R.id.fragment_container,fragment)
                     .commit();
         }else if (mFlagChange == 1){
+            Bundle bundle = new Bundle();
+            bundle.putSerializable(EXTRA_SETTING,mSetting);
             fragment = new TicTacToeFragment();
+            fragment.setArguments(bundle);
             FragmentManager fragmentManager = getSupportFragmentManager();
             fragmentManager
                     .beginTransaction()
@@ -124,14 +135,20 @@ public class GameActivity extends AppCompatActivity {
                     .commit();
         }
         if (mFlagChange == 2 && !mFlagWhichOne){
+            Bundle bundle = new Bundle();
+            bundle.putSerializable(EXTRA_SETTING,mSetting);
             fragment = new _4InARowFragment();
+            fragment.setArguments(bundle);
             FragmentManager fragmentManager = getSupportFragmentManager();
             fragmentManager
                     .beginTransaction()
                     .add(R.id.fragment_container,fragment)
                     .commit();
         }else if (mFlagChange == 2){
+            Bundle bundle = new Bundle();
+            bundle.putSerializable(EXTRA_SETTING,mSetting);
             fragment = new _4InARowFragment();
+            fragment.setArguments(bundle);
             FragmentManager fragmentManager = getSupportFragmentManager();
             fragmentManager
                     .beginTransaction()

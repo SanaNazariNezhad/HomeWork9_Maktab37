@@ -1,5 +1,7 @@
 package org.maktab.homework9_maktab37;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -12,6 +14,8 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 
 import com.google.android.material.snackbar.Snackbar;
+
+import org.maktab.homework9_maktab37.model.Setting;
 
 public class TicTacToeFragment extends Fragment {
     public static final String BUNDLE_KEY_PLAYER = "player";
@@ -26,12 +30,15 @@ public class TicTacToeFragment extends Fragment {
     public static final String BUNDLE_KEY_BTN_3_3 = "btn3_3";
     public static final String BUNDLE_KEY_FLAG_GAME_OVER = "flagGameOver";
     public static final String BUNDLE_KEY_GAME_OVER_COUNTER = "gameOverCounter";
+    public static final String BUNDLE_KEY_SETTING = "setting";
+    public static final String EXTRA_SETTING = "setting";
     private String btn1_1,btn1_2,btn1_3,btn2_1,btn2_2,btn2_3,btn3_1,btn3_2,btn3_3;
     private Button mButton1_1,mButton1_2,mButton1_3,mButton2_1,mButton2_2,mButton2_3,mButton3_1
             ,mButton3_2,mButton3_3;
     private FrameLayout mFrameLayoutTicTacToe;
     private short gameOverCounter;
     private boolean flagGameOver = false;
+    private Setting mSetting = new Setting();
 
     private short player;
     public TicTacToeFragment() {
@@ -64,8 +71,10 @@ public class TicTacToeFragment extends Fragment {
             btn3_1 = savedInstanceState.getString(BUNDLE_KEY_BTN_3_1);
             btn3_2 = savedInstanceState.getString(BUNDLE_KEY_BTN_3_2);
             btn3_3 = savedInstanceState.getString(BUNDLE_KEY_BTN_3_3);
+            mSetting = (Setting) savedInstanceState.getSerializable(BUNDLE_KEY_SETTING);
         }
         View view = inflater.inflate(R.layout.fragment_tic_tac_toe, container, false);
+        mSetting = (Setting) getArguments().getSerializable(GameActivity.EXTRA_SETTING);
         findViews(view);
         mButton1_1.setText(btn1_1);
         mButton1_2.setText(btn1_2);
@@ -100,6 +109,7 @@ public class TicTacToeFragment extends Fragment {
         outState.putString(BUNDLE_KEY_BTN_3_1,mButton3_1.getText().toString());
         outState.putString(BUNDLE_KEY_BTN_3_2,mButton3_2.getText().toString());
         outState.putString(BUNDLE_KEY_BTN_3_3,mButton3_3.getText().toString());
+        outState.putSerializable(BUNDLE_KEY_SETTING,mSetting);
     }
 
     private void listeners() {
@@ -119,14 +129,18 @@ public class TicTacToeFragment extends Fragment {
                         checkPlayer(mButton1_1,mButton2_2,mButton3_3,"X")){
                     disableButton();
                     flagGameOver = true;
-                    Snackbar.make(mFrameLayoutTicTacToe,R.string.player1_is_winner,Snackbar.LENGTH_SHORT).show();
+                    mSetting.setPlayer1_score(mSetting.getPlayer1_score() + 1);
+                    callSnackbar(mSetting.getPlayer1());
+                    setResultOfScore();
                 }
                 else if (checkPlayer(mButton1_1,mButton1_2,mButton1_3,"O") ||
                         checkPlayer(mButton1_1,mButton2_1,mButton3_1,"O") ||
                         checkPlayer(mButton1_1,mButton2_2,mButton3_3,"O")){
                     disableButton();
                     flagGameOver = true;
-                    Snackbar.make(mFrameLayoutTicTacToe,R.string.player2_is_winner,Snackbar.LENGTH_SHORT).show();
+                    mSetting.setPlayer2_score(mSetting.getPlayer2_score() + 1);
+                    callSnackbar(mSetting.getPlayer2());
+                    setResultOfScore();
                 }else if (gameOverCounter == 9){
                     Snackbar.make(mFrameLayoutTicTacToe,R.string.gameOver,Snackbar.LENGTH_SHORT).show();
                 }
@@ -148,13 +162,17 @@ public class TicTacToeFragment extends Fragment {
                         checkPlayer(mButton1_2,mButton2_2,mButton3_2,"X")){
                     disableButton();
                     flagGameOver = true;
-                    Snackbar.make(mFrameLayoutTicTacToe,R.string.player1_is_winner,Snackbar.LENGTH_SHORT).show();
+                    mSetting.setPlayer1_score(mSetting.getPlayer1_score() + 1);
+                    callSnackbar(mSetting.getPlayer1());
+                    setResultOfScore();
                 }
                 else if (checkPlayer(mButton1_1,mButton1_2,mButton1_3,"O") ||
                         checkPlayer(mButton1_2,mButton2_2,mButton3_2,"O")){
                     disableButton();
                     flagGameOver = true;
-                    Snackbar.make(mFrameLayoutTicTacToe,R.string.player2_is_winner,Snackbar.LENGTH_SHORT).show();
+                    mSetting.setPlayer2_score(mSetting.getPlayer2_score() + 1);
+                    callSnackbar(mSetting.getPlayer2());
+                    setResultOfScore();
                 }else if (gameOverCounter == 9){
                     Snackbar.make(mFrameLayoutTicTacToe,R.string.gameOver,Snackbar.LENGTH_SHORT).show();
                 }
@@ -176,14 +194,18 @@ public class TicTacToeFragment extends Fragment {
                         checkPlayer(mButton1_3,mButton2_2,mButton3_1,"X")){
                     disableButton();
                     flagGameOver = true;
-                    Snackbar.make(mFrameLayoutTicTacToe,R.string.player1_is_winner,Snackbar.LENGTH_SHORT).show();
+                    mSetting.setPlayer1_score(mSetting.getPlayer1_score() + 1);
+                    callSnackbar(mSetting.getPlayer1());
+                    setResultOfScore();
                 }
                 else if (checkPlayer(mButton1_1,mButton1_2,mButton1_3,"O") ||
                         checkPlayer(mButton1_3,mButton2_3,mButton3_3,"O") ||
                         checkPlayer(mButton1_3,mButton2_2,mButton3_1,"O")){
                     disableButton();
                     flagGameOver = true;
-                    Snackbar.make(mFrameLayoutTicTacToe,R.string.player2_is_winner,Snackbar.LENGTH_SHORT).show();
+                    mSetting.setPlayer2_score(mSetting.getPlayer2_score() + 1);
+                    callSnackbar(mSetting.getPlayer2());
+                    setResultOfScore();
                 }else if (gameOverCounter == 9){
                     Snackbar.make(mFrameLayoutTicTacToe,R.string.gameOver,Snackbar.LENGTH_SHORT).show();
                 }
@@ -204,13 +226,17 @@ public class TicTacToeFragment extends Fragment {
                         checkPlayer(mButton1_1,mButton2_1,mButton3_1,"X")){
                     disableButton();
                     flagGameOver = true;
-                    Snackbar.make(mFrameLayoutTicTacToe,R.string.player1_is_winner,Snackbar.LENGTH_SHORT).show();
+                    mSetting.setPlayer1_score(mSetting.getPlayer1_score() + 1);
+                    callSnackbar(mSetting.getPlayer1());
+                    setResultOfScore();
                 }
                 else if (checkPlayer(mButton2_1,mButton2_2,mButton2_3,"O") ||
                         checkPlayer(mButton1_1,mButton2_1,mButton3_1,"O")){
                     disableButton();
                     flagGameOver = true;
-                    Snackbar.make(mFrameLayoutTicTacToe,R.string.player2_is_winner,Snackbar.LENGTH_SHORT).show();
+                    mSetting.setPlayer2_score(mSetting.getPlayer2_score() + 1);
+                    callSnackbar(mSetting.getPlayer2());
+                    setResultOfScore();
                 }else if (gameOverCounter == 9){
                     Snackbar.make(mFrameLayoutTicTacToe,R.string.gameOver,Snackbar.LENGTH_SHORT).show();
                 }
@@ -231,13 +257,17 @@ public class TicTacToeFragment extends Fragment {
                         checkPlayer(mButton2_1,mButton2_2,mButton2_3,"X")){
                     disableButton();
                     flagGameOver = true;
-                    Snackbar.make(mFrameLayoutTicTacToe,R.string.player1_is_winner,Snackbar.LENGTH_SHORT).show();
+                    mSetting.setPlayer1_score(mSetting.getPlayer1_score() + 1);
+                    callSnackbar(mSetting.getPlayer1());
+                    setResultOfScore();
                 }
                 else if (checkPlayer(mButton1_2,mButton2_2,mButton3_2,"O") ||
                         checkPlayer(mButton2_1,mButton2_2,mButton3_2,"O")){
                     disableButton();
                     flagGameOver = true;
-                    Snackbar.make(mFrameLayoutTicTacToe,R.string.player2_is_winner,Snackbar.LENGTH_SHORT).show();
+                    mSetting.setPlayer2_score(mSetting.getPlayer2_score() + 1);
+                    callSnackbar(mSetting.getPlayer2());
+                    setResultOfScore();
                 }else if (gameOverCounter == 9){
                     Snackbar.make(mFrameLayoutTicTacToe,R.string.gameOver,Snackbar.LENGTH_SHORT).show();
                 }
@@ -258,13 +288,17 @@ public class TicTacToeFragment extends Fragment {
                         checkPlayer(mButton2_1,mButton2_2,mButton2_3,"X")){
                     disableButton();
                     flagGameOver = true;
-                    Snackbar.make(mFrameLayoutTicTacToe,R.string.player1_is_winner,Snackbar.LENGTH_SHORT).show();
+                    mSetting.setPlayer1_score(mSetting.getPlayer1_score() + 1);
+                    callSnackbar(mSetting.getPlayer1());
+                    setResultOfScore();
                 }
                 else if (checkPlayer(mButton1_3,mButton2_3,mButton3_3,"O") ||
                         checkPlayer(mButton2_1,mButton2_2,mButton2_3,"O")){
                     disableButton();
                     flagGameOver = true;
-                    Snackbar.make(mFrameLayoutTicTacToe,R.string.player2_is_winner,Snackbar.LENGTH_SHORT).show();
+                    mSetting.setPlayer2_score(mSetting.getPlayer2_score() + 1);
+                    callSnackbar(mSetting.getPlayer2());
+                    setResultOfScore();
                 }else if (gameOverCounter == 9){
                     Snackbar.make(mFrameLayoutTicTacToe,R.string.gameOver,Snackbar.LENGTH_SHORT).show();
                 }
@@ -286,14 +320,18 @@ public class TicTacToeFragment extends Fragment {
                         checkPlayer(mButton1_3,mButton2_2,mButton3_1,"X")){
                     disableButton();
                     flagGameOver = true;
-                    Snackbar.make(mFrameLayoutTicTacToe,R.string.player1_is_winner,Snackbar.LENGTH_SHORT).show();
+                    mSetting.setPlayer1_score(mSetting.getPlayer1_score() + 1);
+                    callSnackbar(mSetting.getPlayer1());
+                    setResultOfScore();
                 }
                 else if (checkPlayer(mButton1_1,mButton2_1,mButton3_1,"O") ||
                         checkPlayer(mButton3_1,mButton3_2,mButton3_3,"O") ||
                         checkPlayer(mButton1_3,mButton2_2,mButton3_1,"O")){
                     disableButton();
                     flagGameOver = true;
-                    Snackbar.make(mFrameLayoutTicTacToe,R.string.player2_is_winner,Snackbar.LENGTH_SHORT).show();
+                    mSetting.setPlayer2_score(mSetting.getPlayer2_score() + 1);
+                    callSnackbar(mSetting.getPlayer2());
+                    setResultOfScore();
                 }else if (gameOverCounter == 9){
                     Snackbar.make(mFrameLayoutTicTacToe,R.string.gameOver,Snackbar.LENGTH_SHORT).show();
                 }
@@ -314,13 +352,17 @@ public class TicTacToeFragment extends Fragment {
                         checkPlayer(mButton1_2,mButton2_2,mButton3_2,"X")){
                     disableButton();
                     flagGameOver = true;
-                    Snackbar.make(mFrameLayoutTicTacToe,R.string.player1_is_winner,Snackbar.LENGTH_SHORT).show();
+                    mSetting.setPlayer1_score(mSetting.getPlayer1_score() + 1);
+                    callSnackbar(mSetting.getPlayer1());
+                    setResultOfScore();
                 }
                 else if (checkPlayer(mButton3_1,mButton3_2,mButton3_3,"O") ||
                         checkPlayer(mButton1_2,mButton2_2,mButton3_2,"O")){
                     disableButton();
                     flagGameOver = true;
-                    Snackbar.make(mFrameLayoutTicTacToe,R.string.player2_is_winner,Snackbar.LENGTH_SHORT).show();
+                    mSetting.setPlayer2_score(mSetting.getPlayer2_score() + 1);
+                    callSnackbar(mSetting.getPlayer2());
+                    setResultOfScore();
                 }else if (gameOverCounter == 9){
                     Snackbar.make(mFrameLayoutTicTacToe,R.string.gameOver,Snackbar.LENGTH_SHORT).show();
                 }
@@ -342,20 +384,38 @@ public class TicTacToeFragment extends Fragment {
                         checkPlayer(mButton1_1,mButton2_2,mButton3_3,"X")){
                     disableButton();
                     flagGameOver = true;
-                    Snackbar.make(mFrameLayoutTicTacToe,R.string.player1_is_winner,Snackbar.LENGTH_SHORT).show();
+                    mSetting.setPlayer1_score(mSetting.getPlayer1_score() + 1);
+                    callSnackbar(mSetting.getPlayer1());
+                    setResultOfScore();
                 }
                 else if (checkPlayer(mButton1_3,mButton2_3,mButton3_3,"O") ||
                         checkPlayer(mButton3_1,mButton3_2,mButton3_3,"O") ||
                         checkPlayer(mButton1_1,mButton2_2,mButton3_3,"O")){
                     disableButton();
                     flagGameOver = true;
-                    Snackbar.make(mFrameLayoutTicTacToe,R.string.player2_is_winner,Snackbar.LENGTH_SHORT).show();
+                    mSetting.setPlayer2_score(mSetting.getPlayer2_score() + 1);
+                    callSnackbar(mSetting.getPlayer2());
+                    setResultOfScore();
                 }else if (gameOverCounter == 9){
                     Snackbar.make(mFrameLayoutTicTacToe,R.string.gameOver,Snackbar.LENGTH_SHORT).show();
                 }
             }
         });
 
+    }
+
+    private void callSnackbar(String player) {
+        Snackbar.make(mFrameLayoutTicTacToe, player + " is Winner", Snackbar.LENGTH_SHORT).show();
+    }
+
+    private void setResultOfScore() {
+        Intent intent = new Intent();
+        intent.putExtra(EXTRA_SETTING,mSetting);
+        getActivity().setResult(Activity.RESULT_OK,intent);
+    }
+
+    public interface OnDataPass {
+        public void onDataPass(String data);
     }
 
     private boolean checkPlayer(Button btn1,Button btn2,Button btn3 , String str){
