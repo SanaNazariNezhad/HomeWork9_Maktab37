@@ -2,6 +2,7 @@ package org.maktab.homework9_maktab37;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -13,14 +14,27 @@ import android.widget.FrameLayout;
 import com.google.android.material.snackbar.Snackbar;
 
 public class _4InARowFragment extends Fragment {
+    public static final String BUNDLE_KEY_PLAYER = "player";
+    public static final String BUNDLE_KEY_COUNTER_1 = "mCounter1";
+    public static final String BUNDLE_KEY_COUNTER_2 = "mCounter2";
+    public static final String BUNDLE_KEY_COUNTER_3 = "mCounter3";
+    public static final String BUNDLE_KEY_COUNTER_4 = "mCounter4";
+    public static final String BUNDLE_KEY_COUNTER_5 = "mCounter5";
+    public static final String BUNDLE_KEY_COLOR_OF_BUTTONS_1 = "colorOfButtons1";
+    public static final String BUNDLE_KEY_COLOR_OF_BUTTONS_2 = "colorOfButtons2";
+    public static final String BUNDLE_KEY_COLOR_OF_BUTTONS_3 = "colorOfButtons3";
+    public static final String BUNDLE_KEY_COLOR_OF_BUTTONS_4 = "colorOfButtons4";
+    public static final String BUNDLE_KEY_COLOR_OF_BUTTONS_5 = "colorOfButtons5";
+    public static final String BUNDLE_KEY_FLAG_OF_END = "flagOfEnd";
     private Button mButton1_1, mButton1_2, mButton1_3, mButton1_4, mButton1_5, mButton2_1, mButton2_2,
             mButton2_3, mButton2_4, mButton2_5, mButton3_1, mButton3_2, mButton3_3, mButton3_4, mButton3_5,
             mButton4_1, mButton4_2, mButton4_3, mButton4_4, mButton4_5, mButton5_1, mButton5_2, mButton5_3,
             mButton5_4, mButton5_5;
-    private short player;
-    private short mCounter1, mCounter2, mCounter3, mCounter4, mCounter5;
+    private int player;
+    private int mCounter1, mCounter2, mCounter3, mCounter4, mCounter5;
     private FrameLayout mFrameLayout4InARow;
-    private short[][] mColorOfBtn;
+    private int[][] mColorOfBtn;
+    private boolean flag;
 
     public _4InARowFragment() {
         // Required empty public constructor
@@ -36,17 +50,34 @@ public class _4InARowFragment extends Fragment {
         mCounter3 = 0;
         mCounter4 = 0;
         mCounter5 = 0;
-        mColorOfBtn = new short[5][5];
+        mColorOfBtn = new int[5][5];
 
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        if (savedInstanceState != null){
+            player = savedInstanceState.getInt(BUNDLE_KEY_PLAYER);
+            mCounter1 = savedInstanceState.getInt(BUNDLE_KEY_COUNTER_1);
+            mCounter2 = savedInstanceState.getInt(BUNDLE_KEY_COUNTER_2);
+            mCounter3 = savedInstanceState.getInt(BUNDLE_KEY_COUNTER_3);
+            mCounter4 = savedInstanceState.getInt(BUNDLE_KEY_COUNTER_4);
+            mCounter5 = savedInstanceState.getInt(BUNDLE_KEY_COUNTER_5);
+            mColorOfBtn[0] = savedInstanceState.getIntArray(BUNDLE_KEY_COLOR_OF_BUTTONS_1);
+            mColorOfBtn[1] = savedInstanceState.getIntArray(BUNDLE_KEY_COLOR_OF_BUTTONS_2);
+            mColorOfBtn[2] = savedInstanceState.getIntArray(BUNDLE_KEY_COLOR_OF_BUTTONS_3);
+            mColorOfBtn[3] = savedInstanceState.getIntArray(BUNDLE_KEY_COLOR_OF_BUTTONS_4);
+            mColorOfBtn[4] = savedInstanceState.getIntArray(BUNDLE_KEY_COLOR_OF_BUTTONS_5);
+            flag = savedInstanceState.getBoolean(BUNDLE_KEY_FLAG_OF_END);
+        }
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment__4_in_a_row, container, false);
         findViews(view);
+        checkColor();
         listeners();
+        if (flag)
+            disableButton();
         return view;
     }
 
@@ -203,6 +234,151 @@ public class _4InARowFragment extends Fragment {
         });
     }
 
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt(BUNDLE_KEY_PLAYER,player);
+        outState.putInt(BUNDLE_KEY_COUNTER_1,mCounter1);
+        outState.putInt(BUNDLE_KEY_COUNTER_2,mCounter2);
+        outState.putInt(BUNDLE_KEY_COUNTER_3,mCounter3);
+        outState.putInt(BUNDLE_KEY_COUNTER_4,mCounter4);
+        outState.putInt(BUNDLE_KEY_COUNTER_5,mCounter5);
+        outState.putBoolean(BUNDLE_KEY_FLAG_OF_END,flag);
+        outState.putIntArray(BUNDLE_KEY_COLOR_OF_BUTTONS_1,mColorOfBtn[0]);
+        outState.putIntArray(BUNDLE_KEY_COLOR_OF_BUTTONS_2,mColorOfBtn[1]);
+        outState.putIntArray(BUNDLE_KEY_COLOR_OF_BUTTONS_3,mColorOfBtn[2]);
+        outState.putIntArray(BUNDLE_KEY_COLOR_OF_BUTTONS_4,mColorOfBtn[3]);
+        outState.putIntArray(BUNDLE_KEY_COLOR_OF_BUTTONS_5,mColorOfBtn[4]);
+    }
+
+    private void checkColor(){
+        if (mColorOfBtn[0][0] == 1){
+            mButton1_1.setBackgroundResource(R.color.player1_blue);
+        }else if (mColorOfBtn[0][0] == 2){
+            mButton1_1.setBackgroundResource(R.color.player2_red);
+        }
+        if (mColorOfBtn[0][1] == 1){
+            mButton1_2.setBackgroundResource(R.color.player1_blue);
+        }else if (mColorOfBtn[0][1] == 2){
+            mButton1_2.setBackgroundResource(R.color.player2_red);
+        }
+        if (mColorOfBtn[0][2] == 1){
+            mButton1_3.setBackgroundResource(R.color.player1_blue);
+        }else if (mColorOfBtn[0][2] == 2){
+            mButton1_3.setBackgroundResource(R.color.player2_red);
+        }
+        if (mColorOfBtn[0][3] == 1){
+            mButton1_4.setBackgroundResource(R.color.player1_blue);
+        }else if (mColorOfBtn[0][3] == 2){
+            mButton1_4.setBackgroundResource(R.color.player2_red);
+        }
+        if (mColorOfBtn[0][4] == 1){
+            mButton1_5.setBackgroundResource(R.color.player1_blue);
+        }else if (mColorOfBtn[0][4] == 2){
+            mButton1_5.setBackgroundResource(R.color.player2_red);
+        }
+        if (mColorOfBtn[1][0] == 1){
+            mButton2_1.setBackgroundResource(R.color.player1_blue);
+        }else if (mColorOfBtn[1][0] == 2){
+            mButton2_1.setBackgroundResource(R.color.player2_red);
+        }
+        if (mColorOfBtn[1][1] == 1){
+            mButton2_2.setBackgroundResource(R.color.player1_blue);
+        }else if (mColorOfBtn[1][1] == 2){
+            mButton2_2.setBackgroundResource(R.color.player2_red);
+        }
+        if (mColorOfBtn[1][2] == 1){
+            mButton2_3.setBackgroundResource(R.color.player1_blue);
+        }else if (mColorOfBtn[1][2] == 2){
+            mButton2_3.setBackgroundResource(R.color.player2_red);
+        }
+        if (mColorOfBtn[1][3] == 1){
+            mButton2_4.setBackgroundResource(R.color.player1_blue);
+        }else if (mColorOfBtn[1][3] == 2){
+            mButton2_4.setBackgroundResource(R.color.player2_red);
+        }
+        if (mColorOfBtn[1][4] == 1){
+            mButton2_5.setBackgroundResource(R.color.player1_blue);
+        }else if (mColorOfBtn[1][4] == 2){
+            mButton2_5.setBackgroundResource(R.color.player2_red);
+        }
+        if (mColorOfBtn[2][0] == 1){
+            mButton3_1.setBackgroundResource(R.color.player1_blue);
+        }else if (mColorOfBtn[2][0] == 2){
+            mButton3_1.setBackgroundResource(R.color.player2_red);
+        }
+        if (mColorOfBtn[2][1] == 1){
+            mButton3_2.setBackgroundResource(R.color.player1_blue);
+        }else if (mColorOfBtn[2][1] == 2){
+            mButton3_2.setBackgroundResource(R.color.player2_red);
+        }
+        if (mColorOfBtn[2][2] == 1){
+            mButton3_3.setBackgroundResource(R.color.player1_blue);
+        }else if (mColorOfBtn[2][2] == 2){
+            mButton3_3.setBackgroundResource(R.color.player2_red);
+        }
+        if (mColorOfBtn[2][3] == 1){
+            mButton3_4.setBackgroundResource(R.color.player1_blue);
+        }else if (mColorOfBtn[2][3] == 2){
+            mButton3_4.setBackgroundResource(R.color.player2_red);
+        }
+        if (mColorOfBtn[2][4] == 1){
+            mButton3_5.setBackgroundResource(R.color.player1_blue);
+        }else if (mColorOfBtn[2][4] == 2){
+            mButton3_5.setBackgroundResource(R.color.player2_red);
+        }
+        if (mColorOfBtn[3][0] == 1){
+            mButton4_1.setBackgroundResource(R.color.player1_blue);
+        }else if (mColorOfBtn[3][0] == 2){
+            mButton4_1.setBackgroundResource(R.color.player2_red);
+        }
+        if (mColorOfBtn[3][1] == 1){
+            mButton4_2.setBackgroundResource(R.color.player1_blue);
+        }else if (mColorOfBtn[3][1] == 2){
+            mButton4_2.setBackgroundResource(R.color.player2_red);
+        }
+        if (mColorOfBtn[3][2] == 1){
+            mButton4_3.setBackgroundResource(R.color.player1_blue);
+        }else if (mColorOfBtn[3][2] == 2){
+            mButton4_3.setBackgroundResource(R.color.player2_red);
+        }
+        if (mColorOfBtn[3][3] == 1){
+            mButton4_4.setBackgroundResource(R.color.player1_blue);
+        }else if (mColorOfBtn[3][3] == 2){
+            mButton4_4.setBackgroundResource(R.color.player2_red);
+        }
+        if (mColorOfBtn[3][4] == 1){
+            mButton4_5.setBackgroundResource(R.color.player1_blue);
+        }else if (mColorOfBtn[3][4] == 2){
+            mButton4_5.setBackgroundResource(R.color.player2_red);
+        }
+        if (mColorOfBtn[4][0] == 1){
+            mButton5_1.setBackgroundResource(R.color.player1_blue);
+        }else if (mColorOfBtn[4][0] == 2){
+            mButton5_1.setBackgroundResource(R.color.player2_red);
+        }
+        if (mColorOfBtn[4][1] == 1){
+            mButton5_2.setBackgroundResource(R.color.player1_blue);
+        }else if (mColorOfBtn[4][1] == 2){
+            mButton5_2.setBackgroundResource(R.color.player2_red);
+        }
+        if (mColorOfBtn[4][2] == 1){
+            mButton5_3.setBackgroundResource(R.color.player1_blue);
+        }else if (mColorOfBtn[4][2] == 2){
+            mButton5_3.setBackgroundResource(R.color.player2_red);
+        }
+        if (mColorOfBtn[4][3] == 1){
+            mButton5_4.setBackgroundResource(R.color.player1_blue);
+        }else if (mColorOfBtn[4][3] == 2){
+            mButton5_4.setBackgroundResource(R.color.player2_red);
+        }
+        if (mColorOfBtn[4][4] == 1){
+            mButton5_5.setBackgroundResource(R.color.player1_blue);
+        }else if (mColorOfBtn[4][4] == 2){
+            mButton5_5.setBackgroundResource(R.color.player2_red);
+        }
+    }
+
     private void checkingColumnOne() {
         if (mCounter1 != 5) {
             if (mCounter1 == 0) {
@@ -213,6 +389,7 @@ public class _4InARowFragment extends Fragment {
                     mButton5_1.setBackgroundResource(R.color.player2_red);
                     mColorOfBtn[4][0] = 2;
                 }
+                checkingButtons(5,1);
                 player++;
                 mCounter1++;
             } else if (mCounter1 == 1) {
@@ -223,6 +400,7 @@ public class _4InARowFragment extends Fragment {
                     mButton4_1.setBackgroundResource(R.color.player2_red);
                     mColorOfBtn[3][0] = 2;
                 }
+                checkingButtons(4,1);
                 player++;
                 mCounter1++;
             } else if (mCounter1 == 2) {
@@ -233,6 +411,7 @@ public class _4InARowFragment extends Fragment {
                     mButton3_1.setBackgroundResource(R.color.player2_red);
                     mColorOfBtn[2][0] = 2;
                 }
+                checkingButtons(3,1);
                 player++;
                 mCounter1++;
             } else if (mCounter1 == 3) {
@@ -243,6 +422,7 @@ public class _4InARowFragment extends Fragment {
                     mButton2_1.setBackgroundResource(R.color.player2_red);
                     mColorOfBtn[1][0] = 2;
                 }
+                checkingButtons(2,1);
                 player++;
                 mCounter1++;
             } else if (mCounter1 == 4) {
@@ -253,7 +433,7 @@ public class _4InARowFragment extends Fragment {
                     mButton1_1.setBackgroundResource(R.color.player2_red);
                     mColorOfBtn[0][0] = 2;
                 }
-                checkingBtn1_1();
+                checkingButtons(1,1);
                 player++;
                 mCounter1++;
             }
@@ -271,6 +451,7 @@ public class _4InARowFragment extends Fragment {
                     mButton5_2.setBackgroundResource(R.color.player2_red);
                     mColorOfBtn[4][1] = 2;
                 }
+                checkingButtons(5,2);
                 player++;
                 mCounter2++;
             } else if (mCounter2 == 1) {
@@ -281,6 +462,7 @@ public class _4InARowFragment extends Fragment {
                     mButton4_2.setBackgroundResource(R.color.player2_red);
                     mColorOfBtn[3][1] = 2;
                 }
+                checkingButtons(4,2);
                 player++;
                 mCounter2++;
             } else if (mCounter2 == 2) {
@@ -291,6 +473,7 @@ public class _4InARowFragment extends Fragment {
                     mButton3_2.setBackgroundResource(R.color.player2_red);
                     mColorOfBtn[2][1] = 2;
                 }
+                checkingButtons(3,2);
                 player++;
                 mCounter2++;
             } else if (mCounter2 == 3) {
@@ -301,6 +484,7 @@ public class _4InARowFragment extends Fragment {
                     mButton2_2.setBackgroundResource(R.color.player2_red);
                     mColorOfBtn[1][1] = 2;
                 }
+                checkingButtons(2,2);
                 player++;
                 mCounter2++;
             } else if (mCounter2 == 4) {
@@ -311,7 +495,7 @@ public class _4InARowFragment extends Fragment {
                     mButton1_2.setBackgroundResource(R.color.player2_red);
                     mColorOfBtn[0][1] = 2;
                 }
-                checkingBtn1_2();
+                checkingButtons(1,2);
                 player++;
                 mCounter2++;
             }
@@ -329,6 +513,7 @@ public class _4InARowFragment extends Fragment {
                     mButton5_3.setBackgroundResource(R.color.player2_red);
                     mColorOfBtn[4][2] = 2;
                 }
+                checkingButtons(5,3);
                 player++;
                 mCounter3++;
             } else if (mCounter3 == 1) {
@@ -339,6 +524,7 @@ public class _4InARowFragment extends Fragment {
                     mButton4_3.setBackgroundResource(R.color.player2_red);
                     mColorOfBtn[3][2] = 2;
                 }
+                checkingButtons(4,3);
                 player++;
                 mCounter3++;
             } else if (mCounter3 == 2) {
@@ -349,6 +535,7 @@ public class _4InARowFragment extends Fragment {
                     mButton3_3.setBackgroundResource(R.color.player2_red);
                     mColorOfBtn[2][2] = 2;
                 }
+                checkingButtons(3,3);
                 player++;
                 mCounter3++;
             } else if (mCounter3 == 3) {
@@ -359,6 +546,7 @@ public class _4InARowFragment extends Fragment {
                     mButton2_3.setBackgroundResource(R.color.player2_red);
                     mColorOfBtn[1][2] = 2;
                 }
+                checkingButtons(2,3);
                 player++;
                 mCounter3++;
             } else if (mCounter3 == 4) {
@@ -369,6 +557,7 @@ public class _4InARowFragment extends Fragment {
                     mButton1_3.setBackgroundResource(R.color.player2_red);
                     mColorOfBtn[0][2] = 2;
                 }
+                checkingButtons(1,3);
                 player++;
                 mCounter3++;
             }
@@ -386,6 +575,7 @@ public class _4InARowFragment extends Fragment {
                     mButton5_4.setBackgroundResource(R.color.player2_red);
                     mColorOfBtn[4][3] = 2;
                 }
+                checkingButtons(5,4);
                 player++;
                 mCounter4++;
             } else if (mCounter4 == 1) {
@@ -396,6 +586,7 @@ public class _4InARowFragment extends Fragment {
                     mButton4_4.setBackgroundResource(R.color.player2_red);
                     mColorOfBtn[3][3] = 2;
                 }
+                checkingButtons(4,4);
                 player++;
                 mCounter4++;
             } else if (mCounter4 == 2) {
@@ -406,6 +597,7 @@ public class _4InARowFragment extends Fragment {
                     mButton3_4.setBackgroundResource(R.color.player2_red);
                     mColorOfBtn[2][3] = 2;
                 }
+                checkingButtons(3,4);
                 player++;
                 mCounter4++;
             } else if (mCounter4 == 3) {
@@ -416,6 +608,7 @@ public class _4InARowFragment extends Fragment {
                     mButton2_4.setBackgroundResource(R.color.player2_red);
                     mColorOfBtn[1][3] = 2;
                 }
+                checkingButtons(2,4);
                 player++;
                 mCounter4++;
             } else if (mCounter4 == 4) {
@@ -426,6 +619,7 @@ public class _4InARowFragment extends Fragment {
                     mButton1_4.setBackgroundResource(R.color.player2_red);
                     mColorOfBtn[0][3] = 2;
                 }
+                checkingButtons(1,4);
                 player++;
                 mCounter4++;
             }
@@ -443,6 +637,7 @@ public class _4InARowFragment extends Fragment {
                     mButton5_5.setBackgroundResource(R.color.player2_red);
                     mColorOfBtn[4][4] = 2;
                 }
+                checkingButtons(5,5);
                 player++;
                 mCounter5++;
             } else if (mCounter5 == 1) {
@@ -453,6 +648,7 @@ public class _4InARowFragment extends Fragment {
                     mButton4_5.setBackgroundResource(R.color.player2_red);
                     mColorOfBtn[3][4] = 2;
                 }
+                checkingButtons(4,5);
                 player++;
                 mCounter5++;
             } else if (mCounter5 == 2) {
@@ -463,6 +659,7 @@ public class _4InARowFragment extends Fragment {
                     mButton3_5.setBackgroundResource(R.color.player2_red);
                     mColorOfBtn[2][4] = 2;
                 }
+                checkingButtons(3,5);
                 player++;
                 mCounter5++;
             } else if (mCounter5 == 3) {
@@ -473,6 +670,7 @@ public class _4InARowFragment extends Fragment {
                     mButton2_5.setBackgroundResource(R.color.player2_red);
                     mColorOfBtn[1][4] = 2;
                 }
+                checkingButtons(2,5);
                 player++;
                 mCounter5++;
             } else if (mCounter5 == 4) {
@@ -483,6 +681,7 @@ public class _4InARowFragment extends Fragment {
                     mButton1_5.setBackgroundResource(R.color.player2_red);
                     mColorOfBtn[0][4] = 2;
                 }
+                checkingButtons(1,5);
                 player++;
                 mCounter5++;
             }
@@ -494,6 +693,7 @@ public class _4InARowFragment extends Fragment {
         if (mCounter1 == 5 && mCounter2 == 5 && mCounter3 == 5 && mCounter4 == 5 && mCounter5 == 5) {
             Snackbar.make(mFrameLayout4InARow, R.string.gameOver, Snackbar.LENGTH_SHORT).show();
             disableButton();
+            flag = true;
         }
     }
 
@@ -555,110 +755,63 @@ public class _4InARowFragment extends Fragment {
         mFrameLayout4InARow = view.findViewById(R.id.framelayout_4inARow);
     }
 
-    private void checkingBtn1_1() {
-        short [] parameters = {0,0,0,1,0,2,0,3,1,0,2,0,3,0,1,1,2,2,3,3};
-        checkingWinnerOne(0, 0, 0, 1, 0, 2, 0, 3, 1, 0, 2, 0, 3, 0, 1, 1, 2, 2, 3, 3);
-    }
-
-    private void checkingWinnerOne(int i, int i2, int i3, int i4, int i5, int i6, int i7, int i8, int i9, int i10, int i11, int i12, int i13, int i14, int i15, int i16, int i17, int i18, int i19, int i20) {
-        if (((mColorOfBtn[i][i2] == mColorOfBtn[i3][i4]) && (mColorOfBtn[i][i2] == mColorOfBtn[i5][i6]) &&
-                (mColorOfBtn[i][i2] == mColorOfBtn[i7][i8])) || ((mColorOfBtn[i][i2] == mColorOfBtn[i9][i10])
-                && (mColorOfBtn[i][i2] == mColorOfBtn[i11][i12]) && (mColorOfBtn[i][i2] == mColorOfBtn[i13][i14]))
-                || ((mColorOfBtn[i][i2] == mColorOfBtn[i15][i16]) && (mColorOfBtn[i][i2] == mColorOfBtn[i17][i18])
-                && (mColorOfBtn[i][i2] == mColorOfBtn[i19][i20]))) {
-            if (mColorOfBtn[i][i2] == 1) {
+    private void checkingWinnerOne(int[] arr) {
+        if (((mColorOfBtn[arr[0]][arr[1]] == mColorOfBtn[arr[2]][arr[3]]) && (mColorOfBtn[arr[0]][arr[1]] == mColorOfBtn[arr[4]][arr[5]]) &&
+                (mColorOfBtn[arr[0]][arr[1]] == mColorOfBtn[arr[6]][arr[7]])) || ((mColorOfBtn[arr[0]][arr[1]] == mColorOfBtn[arr[8]][arr[9]])
+                && (mColorOfBtn[arr[0]][arr[1]] == mColorOfBtn[arr[10]][arr[11]]) && (mColorOfBtn[arr[0]][arr[1]] == mColorOfBtn[arr[12]][arr[13]]))
+                || ((mColorOfBtn[arr[0]][arr[1]] == mColorOfBtn[arr[14]][arr[15]]) && (mColorOfBtn[arr[0]][arr[1]] == mColorOfBtn[arr[16]][arr[17]])
+                && (mColorOfBtn[arr[0]][arr[1]] == mColorOfBtn[arr[18]][arr[19]]))) {
+            if (mColorOfBtn[arr[0]][arr[1]] == 1) {
                 Snackbar.make(mFrameLayout4InARow, R.string.player1_is_winner, Snackbar.LENGTH_SHORT).show();
                 disableButton();
-            } else if (mColorOfBtn[i][i2] == 2) {
+                flag = true;
+            } else if (mColorOfBtn[arr[0]][arr[1]] == 2) {
                 Snackbar.make(mFrameLayout4InARow, R.string.player2_is_winner, Snackbar.LENGTH_SHORT).show();
                 disableButton();
+                flag = true;
             }
         }
     }
 
-    private void checkingBtn1_2() {
-        checkingWinnerTwo(0, 1, 0, 2, 3, 0, 2, 0, 3, 0, 4, 1, 2, 3, 1, 2, 2, 3, 3, 4);
-    }
-
-    private void checkingWinnerTwo(int i, int i2, int i3, int i4, int i5, int i6, int i7, int i8, int i9, int i10, int i11, int i12, int i13, int i14, int i15, int i16, int i17, int i18, int i19, int i20) {
-        if (((mColorOfBtn[i][i2] == mColorOfBtn[i][i3]) && (mColorOfBtn[i][i2] == mColorOfBtn[i][i4]) &&
-                (mColorOfBtn[i][i2] == mColorOfBtn[i][i5])) || ((mColorOfBtn[i][i2] == mColorOfBtn[i6][i7])
-                && (mColorOfBtn[i][i2] == mColorOfBtn[i8][i9]) && (mColorOfBtn[i][i2] == mColorOfBtn[i10][i11])) ||
-                ((mColorOfBtn[i][i2] == mColorOfBtn[i12][i2]) && (mColorOfBtn[i][i2] == mColorOfBtn[i13][i2])
-                        && (mColorOfBtn[i][i2] == mColorOfBtn[i14][i2])) || ((mColorOfBtn[i][i2] == mColorOfBtn[i15][i16])
-                && (mColorOfBtn[i][i2] == mColorOfBtn[i17][i18]) && (mColorOfBtn[i][i2] == mColorOfBtn[i19][i20]))) {
-            if (mColorOfBtn[i][i2] == 1) {
+    private void checkingWinnerTwo(int[] arr) {
+        if (((mColorOfBtn[arr[0]][arr[1]] == mColorOfBtn[arr[0]][arr[2]]) && (mColorOfBtn[arr[0]][arr[1]] == mColorOfBtn[arr[0]][arr[3]]) &&
+                (mColorOfBtn[arr[0]][arr[1]] == mColorOfBtn[arr[0]][arr[4]])) || ((mColorOfBtn[arr[0]][arr[1]] == mColorOfBtn[arr[5]][arr[6]])
+                && (mColorOfBtn[arr[0]][arr[1]] == mColorOfBtn[arr[7]][arr[8]]) && (mColorOfBtn[arr[0]][arr[1]] == mColorOfBtn[arr[9]][arr[10]])) ||
+                ((mColorOfBtn[arr[0]][arr[1]] == mColorOfBtn[arr[11]][arr[1]]) && (mColorOfBtn[arr[0]][arr[1]] == mColorOfBtn[arr[12]][arr[1]])
+                        && (mColorOfBtn[arr[0]][arr[1]] == mColorOfBtn[arr[13]][arr[1]])) || ((mColorOfBtn[arr[0]][arr[1]] == mColorOfBtn[arr[14]][arr[15]])
+                && (mColorOfBtn[arr[0]][arr[1]] == mColorOfBtn[arr[16]][arr[17]]) && (mColorOfBtn[arr[0]][arr[1]] == mColorOfBtn[arr[18]][arr[19]]))) {
+            if (mColorOfBtn[arr[0]][arr[1]] == 1) {
                 Snackbar.make(mFrameLayout4InARow, R.string.player1_is_winner, Snackbar.LENGTH_SHORT).show();
                 disableButton();
-            } else if (mColorOfBtn[i][i2] == 2) {
+                flag = true;
+            } else if (mColorOfBtn[arr[0]][arr[1]] == 2) {
                 Snackbar.make(mFrameLayout4InARow, R.string.player2_is_winner, Snackbar.LENGTH_SHORT).show();
                 disableButton();
+                flag = true;
             }
         }
     }
 
-    private void checkingBtn1_3() {
-        checkingWinnerOne(0, 2, 0, 0, 0, 1, 0, 3, 0, 1, 0, 3, 0, 4, 1, 2, 2, 2, 3, 2);
-    }
-
-    private void checkingBtn1_4() {
-        checkingWinnerTwo(0, 3, 0, 1, 2, 0, 1, 0, 2, 0, 4, 1, 2, 3, 1, 2, 2, 1, 3, 0);
-    }
-
-    private void checkingBtn1_5() {
-        checkingWinnerOne(0, 4, 0, 1, 0, 2, 0, 3, 1, 4, 2, 4, 3, 4, 1, 3, 2, 2, 3, 1);
-    }
-
-    private void checkingBtn2_1() {
-        checkingWinnerTwo(1, 0, 1, 2, 3, 2, 0, 3, 0, 4, 0, 0, 2, 3, 2, 1, 3, 2, 4, 3);
-    }
-
-    private void checkingBtn2_2() {
-        checkingWinnerThree(1, 1, 2, 3, 2, 3, 0, 0, 2, 2, 3, 3, 2, 2, 3, 3, 4, 4);
-    }
-
-    private void checkingWinnerThree(int i, int i2, int i3, int i4, int i5, int i6, int i7, int i8, int i9, int i10, int i11, int i12, int i13, int i14, int i15, int i16, int i17, int i18) {
-        if (((mColorOfBtn[i][i2] == mColorOfBtn[i][0]) && (mColorOfBtn[i][i2] == mColorOfBtn[i][i3]) &&
-                (mColorOfBtn[i][i2] == mColorOfBtn[i][i4])) || ((mColorOfBtn[i][i2] == mColorOfBtn[i][i3])
-                && (mColorOfBtn[i][i2] == mColorOfBtn[i][i4]) && (mColorOfBtn[i][i2] == mColorOfBtn[i][4])) ||
-                ((mColorOfBtn[i][i2] == mColorOfBtn[0][i2]) && (mColorOfBtn[i][i2] == mColorOfBtn[i5][i2])
-                        && (mColorOfBtn[i][i2] == mColorOfBtn[i6][i2])) || ((mColorOfBtn[i][i2] == mColorOfBtn[i5][i2])
-                && (mColorOfBtn[i][i2] == mColorOfBtn[i6][i2]) && (mColorOfBtn[i][i2] == mColorOfBtn[4][i2])) ||
-                ((mColorOfBtn[i][i2] == mColorOfBtn[i7][i8]) && (mColorOfBtn[i][i2] == mColorOfBtn[i9][i10]) &&
-                        (mColorOfBtn[i][i2] == mColorOfBtn[i11][i12])) || ((mColorOfBtn[i][i2] == mColorOfBtn[i13][i14])
-                && (mColorOfBtn[i][i2] == mColorOfBtn[i15][i16]) && (mColorOfBtn[i][i2] == mColorOfBtn[i17][i18]))) {
-            if (mColorOfBtn[i][i2] == 1) {
+    private void checkingWinnerThree(int[] arr) {
+        if (((mColorOfBtn[arr[0]][arr[1]] == mColorOfBtn[arr[0]][0]) && (mColorOfBtn[arr[0]][arr[1]] == mColorOfBtn[arr[0]][arr[2]]) &&
+                (mColorOfBtn[arr[0]][arr[1]] == mColorOfBtn[arr[0]][arr[3]])) || ((mColorOfBtn[arr[0]][arr[1]] == mColorOfBtn[arr[0]][arr[2]])
+                && (mColorOfBtn[arr[0]][arr[1]] == mColorOfBtn[arr[0]][arr[3]]) && (mColorOfBtn[arr[0]][arr[1]] == mColorOfBtn[arr[0]][4])) ||
+                ((mColorOfBtn[arr[0]][arr[1]] == mColorOfBtn[0][arr[1]]) && (mColorOfBtn[arr[0]][arr[1]] == mColorOfBtn[arr[4]][arr[1]])
+                        && (mColorOfBtn[arr[0]][arr[1]] == mColorOfBtn[arr[5]][arr[1]])) || ((mColorOfBtn[arr[0]][arr[1]] == mColorOfBtn[arr[4]][arr[1]])
+                && (mColorOfBtn[arr[0]][arr[1]] == mColorOfBtn[arr[5]][arr[1]]) && (mColorOfBtn[arr[0]][arr[1]] == mColorOfBtn[4][arr[1]])) ||
+                ((mColorOfBtn[arr[0]][arr[1]] == mColorOfBtn[arr[6]][arr[7]]) && (mColorOfBtn[arr[0]][arr[1]] == mColorOfBtn[arr[8]][arr[9]]) &&
+                        (mColorOfBtn[arr[0]][arr[1]] == mColorOfBtn[arr[10]][arr[11]])) || ((mColorOfBtn[arr[0]][arr[1]] == mColorOfBtn[arr[12]][arr[13]])
+                && (mColorOfBtn[arr[0]][arr[1]] == mColorOfBtn[arr[14]][arr[15]]) && (mColorOfBtn[arr[0]][arr[1]] == mColorOfBtn[arr[16]][arr[17]]))) {
+            if (mColorOfBtn[arr[0]][arr[1]] == 1) {
                 Snackbar.make(mFrameLayout4InARow, R.string.player1_is_winner, Snackbar.LENGTH_SHORT).show();
                 disableButton();
-            } else if (mColorOfBtn[i][i2] == 2) {
+                flag = true;
+            } else if (mColorOfBtn[arr[0]][arr[1]] == 2) {
                 Snackbar.make(mFrameLayout4InARow, R.string.player2_is_winner, Snackbar.LENGTH_SHORT).show();
                 disableButton();
+                flag = true;
             }
         }
-    }
-
-    private void checkingBtn2_3() {
-        checkingWinnerThree(1, 2, 1, 3, 2, 3, 0, 1, 2, 3, 3, 4, 0, 3, 2, 1, 3, 0);
-    }
-
-    private void checkingBtn2_4() {
-        checkingWinnerThree(1, 3, 1, 2, 2, 3, 0, 4, 2, 2, 3, 1, 2, 2, 3, 1, 4, 0);
-    }
-
-    private void checkingBtn2_5() {
-        checkingWinnerTwo(1, 4, 1, 2, 3, 0, 4, 2, 4, 3, 4, 2, 3, 4, 2, 3, 3, 2, 4, 1);
-    }
-
-    private void checkingBtn3_1() {
-        checkingWinnerOne(2, 0, 2, 1, 2, 2, 2, 3, 0, 0, 1, 0, 3, 0, 1, 0, 3, 0, 4, 0);
-    }
-
-    private void checkingBtn3_2() {
-        checkingWinnerThree(2, 1, 2, 3, 1, 3, 1, 0, 3, 2, 4, 3, 0, 3, 1, 2, 3, 0);
-    }
-
-    private void checkingBtn3_3() {
-        checkingWinnerFour();
     }
 
     private void checkingWinnerFour() {
@@ -677,58 +830,90 @@ public class _4InARowFragment extends Fragment {
             if (mColorOfBtn[2][2] == 1) {
                 Snackbar.make(mFrameLayout4InARow, R.string.player1_is_winner, Snackbar.LENGTH_SHORT).show();
                 disableButton();
+                flag = true;
             } else if (mColorOfBtn[2][2] == 2) {
                 Snackbar.make(mFrameLayout4InARow, R.string.player2_is_winner, Snackbar.LENGTH_SHORT).show();
                 disableButton();
+                flag = true;
             }
         }
     }
 
-    private void checkingBtn3_4() {
-        checkingWinnerThree(2, 3, 1, 2, 1, 3, 1, 4, 3, 2, 4, 1, 0, 1, 1, 2, 3, 4);
-    }
-
-    private void checkingBtn3_5() {
-        checkingWinnerOne(2, 4, 0, 4, 1, 4, 3, 4, 1, 4, 3, 4, 4, 4, 2, 1, 2, 2, 2, 3);
-    }
-
-    private void checkingBtn4_1() {
-        checkingWinnerTwo(3, 0, 1, 2, 3, 0, 0, 1, 0, 2, 0, 1, 2, 4, 0, 3, 1, 2, 2, 1);
-    }
-
-    private void checkingBtn4_2() {
-        checkingWinnerThree(3, 1, 2, 3, 1, 2, 0, 4, 1, 3, 2, 2, 1, 3, 2, 2, 4, 0);
-    }
-
-    private void checkingBtn4_3() {
-        checkingWinnerThree(3, 2, 1, 3, 1, 2, 1, 0, 2, 1, 4, 3, 1, 4, 2, 3, 4, 1);
-    }
-
-    private void checkingBtn4_4() {
-        checkingWinnerThree(3, 3, 1, 2, 1, 2, 0, 0, 1, 1, 2, 2, 1, 1, 2, 2, 4, 4);
-    }
-
-    private void checkingBtn4_5() {
-        checkingWinnerTwo(3, 4, 1, 2, 3, 0, 4, 1, 4, 2, 4, 1, 2, 4, 0, 1, 1, 2, 2, 3);
-    }
-
-    private void checkingBtn5_1() {
-        checkingWinnerOne(4, 0, 4, 1, 4, 2, 4, 3, 1, 0, 2, 0, 3, 0, 1, 3, 2, 2, 3, 1);
-    }
-
-    private void checkingBtn5_2() {
-        checkingWinnerTwo(4, 1, 0, 2, 3, 4, 2, 4, 3, 4, 4, 1, 2, 3, 1, 4, 2, 3, 3, 2);
-    }
-
-    private void checkingBtn5_3() {
-        checkingWinnerOne(4, 2, 4, 0, 4, 1, 4, 3, 4, 1, 4, 3, 4, 4, 1, 2, 2, 2, 3, 2);
-    }
-
-    private void checkingBtn5_4() {
-        checkingWinnerTwo(4, 3, 0, 1, 2, 4, 1, 4, 2, 4, 4, 1, 2, 3, 1, 0, 2, 1, 3, 2);
-    }
-
-    private void checkingBtn5_5() {
-        checkingWinnerOne(4, 4, 4, 1, 4, 2, 4, 3, 1, 4, 2, 4, 3, 4, 1, 1, 2, 2, 3, 3);
+    private void checkingButtons(int row , int column){
+        if (row == 1 && column ==1){
+            int [] parameters = {0,0,0,1,0,2,0,3,1,0,2,0,3,0,1,1,2,2,3,3};
+            checkingWinnerOne(parameters);
+        }else if (row == 1 && column ==2){
+            int [] parameters = {0,1,0,2,3,0,2,0,3,0,4,1,2,3,1,2,2,3,3,4};
+            checkingWinnerTwo(parameters);
+        }else if (row == 1 && column ==3){
+            int[] parameters = {0,2,0,0,0,1,0,3,0,1,0,3,0,4,1,2,2,2,3,2};
+            checkingWinnerOne(parameters);
+        }else if (row == 1 && column ==4){
+            int[] parameters = {0,3,0,1,2,0,1,0,2,0,4,1,2,3,1,2,2,1,3,0};
+            checkingWinnerTwo(parameters);
+        }else if (row == 1 && column ==5){
+            int[] parameters = {0,4,0,1,0,2,0,3,1,4,2,4,3,4,1,3,2,2,3,1};
+            checkingWinnerOne(parameters);
+        }else if (row == 2 && column ==1){
+            int[] parameters = {1,0,1,2,3,2,0,3,0,4,0,0,2,3,2,1,3,2,4,3};
+            checkingWinnerTwo(parameters);
+        }else if (row == 2 && column ==2){
+            int[] parameters = {1,1,2,3,2,3,0,0,2,2,3,3,2,2,3,3,4,4};
+            checkingWinnerThree(parameters);
+        }else if (row == 2 && column ==3){
+            int[] parameters = {1,2,1,3,2,3,0,1,2,3,3,4,0,3,2,1,3,0};
+            checkingWinnerThree(parameters);
+        }else if (row == 2 && column ==4){
+            int[] parameters = {1,3,1,2,2,3,0,4,2,2,3,1,2,2,3,1,4,0};
+            checkingWinnerThree(parameters);
+        }else if (row == 2 && column ==5){
+            int[] parameters = {1,4,1,2,3,0,4,2,4,3,4,2,3,4,2,3,3,2,4,1};
+            checkingWinnerTwo(parameters);
+        }else if (row == 3 && column ==1){
+            int[] parameters = {2,0,2,1,2,2,2,3,0,0,1,0,3,0,1,0,3,0,4,0};
+            checkingWinnerOne(parameters);
+        }else if (row == 3 && column ==2){
+            int[] parameters = {2,1,2,3,1,3,1,0,3,2,4,3,0,3,1,2,3,0};
+            checkingWinnerThree(parameters);
+        }else if (row == 3 && column ==3){
+            checkingWinnerFour();
+        }else if (row == 3 && column ==4){
+            int[] parameters = {2,3,1,2,1,3,1,4,3,2,4,1,0,1,1,2,3,4};
+            checkingWinnerThree(parameters);
+        }else if (row == 3 && column ==5){
+            int[] parameters = {2,4,0,4,1,4,3,4,1,4,3,4,4,4,2,1,2,2,2,3};
+            checkingWinnerOne(parameters);
+        }else if (row == 4 && column ==1){
+            int[] parameters = {3,0,1,2,3,0,0,1,0,2,0,1,2,4,0,3,1,2,2,1};
+            checkingWinnerTwo(parameters);
+        }else if (row == 4 && column ==2){
+            int[] parameters = {3,1,2,3,1,2,0,4,1,3,2,2,1,3,2,2,4,0};
+            checkingWinnerThree(parameters);
+        }else if (row == 4 && column ==3){
+            int[] parameters = {3,2,1,3,1,2,1,0,2,1,4,3,1,4,2,3,4,1};
+            checkingWinnerThree(parameters);
+        }else if (row == 4 && column ==4){
+            int[] parameters = {3,3,1,2,1,2,0,0,1,1,2,2,1,1,2,2,4,4};
+            checkingWinnerThree(parameters);
+        }else if (row == 4 && column ==5){
+            int[] parameters = {3,4,1,2,3,0,4,1,4,2,4,1,2,4,0,1,1,2,2,3};
+            checkingWinnerTwo(parameters);
+        }else if (row == 5 && column ==1){
+            int[] parameters = {4,0,4,1,4,2,4,3,1,0,2,0,3,0,1,3,2,2,3,1};
+            checkingWinnerOne(parameters);
+        }else if (row == 5 && column ==2){
+            int[] parameters = {4,1,0,2,3,4,2,4,3,4,4,1,2,3,1,4,2,3,3,2};
+            checkingWinnerTwo(parameters);
+        }else if (row == 5 && column ==3){
+            int[] parameters = {4,2,4,0,4,1,4,3,4,1,4,3,4,4,1,2,2,2,3,2};
+            checkingWinnerOne(parameters);
+        }else if (row == 5 && column ==4){
+            int[] parameters = {4,3,0,1,2,4,1,4,2,4,4,1,2,3,1,0,2,1,3,2};
+            checkingWinnerTwo(parameters);
+        }else if (row == 5 && column ==5){
+            int[] parameters = {4,4,4,1,4,2,4,3,1,4,2,4,3,4,1,1,2,2,3,3};
+            checkingWinnerOne(parameters);
+        }
     }
 }
